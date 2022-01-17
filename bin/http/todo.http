@@ -1,0 +1,11 @@
+GET {{url}}/api/todos
+Accept: application/json
+
+###
+
+POST {{url}}/api/todos
+Content-Type: application/json
+
+{
+"title" : "demo 2"
+}
