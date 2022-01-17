@@ -1,0 +1,19 @@
+version: '3.1'
+
+services:
+  mariadb:
+    container_name: mariadb
+    image: mariadb:10.7.1
+    restart: always
+    environment:
+      MARIADB_ROOT_PASSWORD: root
+    ports:
+      - '3306:3306'
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin
+    restart: always
+    ports:
+      - '8888:80' # TODO Configure PhpMyAdmin port (8888)
+    environment:
+      - PMA_ARBITRARY=1
