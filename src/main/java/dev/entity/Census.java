@@ -2,27 +2,21 @@ package dev.entity;
 
 import javax.persistence.*;
 
-@Table(name = "census", indexes = {
-        @Index(name = "id_city_css", columnList = "id_city_css", unique = true)
-})
 @Entity
-public class Census {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@Table(name = "census")
+public class Census extends BaseEntity {
     @Column(name = "population")
     private Long population;
 
-    @Column(name = "id_city_css", nullable = false)
-    private Long idCityCss;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_city_css", nullable = false)
+    private City idCityCss;
 
-    public Long getIdCityCss() {
+    public City getIdCityCss() {
         return idCityCss;
     }
 
-    public void setIdCityCss(Long idCityCss) {
+    public void setIdCityCss(City idCityCss) {
         this.idCityCss = idCityCss;
     }
 
@@ -32,13 +26,5 @@ public class Census {
 
     public void setPopulation(Long population) {
         this.population = population;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

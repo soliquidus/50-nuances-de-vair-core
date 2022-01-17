@@ -3,16 +3,9 @@ package dev.entity;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@Table(name = "city", indexes = {
-        @Index(name = "id_department_cty", columnList = "id_department_cty")
-})
 @Entity
-public class City {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@Table(name = "city")
+public class City extends BaseEntity {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
@@ -25,14 +18,15 @@ public class City {
     @Column(name = "latitude", precision = 15, scale = 5)
     private BigDecimal latitude;
 
-    @Column(name = "id_department_cty", nullable = false)
-    private Long idDepartmentCty;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_department_cty", nullable = false)
+    private Department idDepartmentCty;
 
-    public Long getIdDepartmentCty() {
+    public Department getIdDepartmentCty() {
         return idDepartmentCty;
     }
 
-    public void setIdDepartmentCty(Long idDepartmentCty) {
+    public void setIdDepartmentCty(Department idDepartmentCty) {
         this.idDepartmentCty = idDepartmentCty;
     }
 
@@ -66,13 +60,5 @@ public class City {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

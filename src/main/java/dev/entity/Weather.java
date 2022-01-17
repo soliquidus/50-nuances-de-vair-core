@@ -4,16 +4,9 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.Instant;
 
-@Table(name = "weather", indexes = {
-        @Index(name = "id_city_wtr", columnList = "id_city_wtr", unique = true)
-})
 @Entity
-public class Weather {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@Table(name = "weather")
+public class Weather extends BaseEntity {
     @Column(name = "label", length = 50)
     private String label;
 
@@ -30,14 +23,15 @@ public class Weather {
     @Column(name = "date_time")
     private Instant dateTime;
 
-    @Column(name = "id_city_wtr", nullable = false)
-    private Long idCityWtr;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_city_wtr", nullable = false)
+    private City idCityWtr;
 
-    public Long getIdCityWtr() {
+    public City getIdCityWtr() {
         return idCityWtr;
     }
 
-    public void setIdCityWtr(Long idCityWtr) {
+    public void setIdCityWtr(City idCityWtr) {
         this.idCityWtr = idCityWtr;
     }
 
@@ -79,13 +73,5 @@ public class Weather {
 
     public void setLabel(String label) {
         this.label = label;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

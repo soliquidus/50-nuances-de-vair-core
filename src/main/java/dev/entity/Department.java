@@ -2,30 +2,24 @@ package dev.entity;
 
 import javax.persistence.*;
 
-@Table(name = "department", indexes = {
-        @Index(name = "id_region_dep", columnList = "id_region_dep")
-})
 @Entity
-public class Department {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@Table(name = "department")
+public class Department extends BaseEntity {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
     @Column(name = "department_code")
     private Integer departmentCode;
 
-    @Column(name = "id_region_dep", nullable = false)
-    private Long idRegionDep;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_region_dep", nullable = false)
+    private Region idRegionDep;
 
-    public Long getIdRegionDep() {
+    public Region getIdRegionDep() {
         return idRegionDep;
     }
 
-    public void setIdRegionDep(Long idRegionDep) {
+    public void setIdRegionDep(Region idRegionDep) {
         this.idRegionDep = idRegionDep;
     }
 
@@ -43,13 +37,5 @@ public class Department {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

@@ -3,16 +3,9 @@ package dev.entity;
 import javax.persistence.*;
 import java.time.Instant;
 
-@Table(name = "pollution", indexes = {
-        @Index(name = "id_city_ptn", columnList = "id_city_ptn", unique = true)
-})
 @Entity
-public class Pollution {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@Table(name = "pollution")
+public class Pollution extends BaseEntity {
     @Column(name = "nitrogen_dioxide")
     private Integer nitrogenDioxide;
 
@@ -25,14 +18,15 @@ public class Pollution {
     @Column(name = "date_time")
     private Instant dateTime;
 
-    @Column(name = "id_city_ptn", nullable = false)
-    private Long idCityPtn;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_city_ptn", nullable = false)
+    private City idCityPtn;
 
-    public Long getIdCityPtn() {
+    public City getIdCityPtn() {
         return idCityPtn;
     }
 
-    public void setIdCityPtn(Long idCityPtn) {
+    public void setIdCityPtn(City idCityPtn) {
         this.idCityPtn = idCityPtn;
     }
 
@@ -66,13 +60,5 @@ public class Pollution {
 
     public void setNitrogenDioxide(Integer nitrogenDioxide) {
         this.nitrogenDioxide = nitrogenDioxide;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

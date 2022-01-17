@@ -2,16 +2,9 @@ package dev.entity;
 
 import javax.persistence.*;
 
-@Table(name = "address", indexes = {
-        @Index(name = "id_user_add", columnList = "id_user_add", unique = true)
-})
 @Entity
-public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@Table(name = "address")
+public class Address extends BaseEntity {
     @Column(name = "street_name", length = 50)
     private String streetName;
 
@@ -21,14 +14,15 @@ public class Address {
     @Column(name = "complement", length = 50)
     private String complement;
 
-    @Column(name = "id_user_add", nullable = false)
-    private Long idUserAdd;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_user_add", nullable = false)
+    private User idUserAdd;
 
-    public Long getIdUserAdd() {
+    public User getIdUserAdd() {
         return idUserAdd;
     }
 
-    public void setIdUserAdd(Long idUserAdd) {
+    public void setIdUserAdd(User idUserAdd) {
         this.idUserAdd = idUserAdd;
     }
 
@@ -54,13 +48,5 @@ public class Address {
 
     public void setStreetName(String streetName) {
         this.streetName = streetName;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

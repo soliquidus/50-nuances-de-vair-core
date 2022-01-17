@@ -1,18 +1,12 @@
 package dev.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
-@Table(name = "user", indexes = {
-        @Index(name = "mail", columnList = "mail", unique = true),
-        @Index(name = "username", columnList = "username", unique = true)
-})
 @Entity
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@Table(name = "user")
+public class User extends BaseEntity {
     @Column(name = "username", nullable = false, length = 25)
     private String username;
 
@@ -77,13 +71,5 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

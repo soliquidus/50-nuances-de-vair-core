@@ -3,42 +3,36 @@ package dev.entity;
 import javax.persistence.*;
 import java.time.LocalDate;
 
-@Table(name = "message", indexes = {
-        @Index(name = "id_topic_msg", columnList = "id_topic_msg"),
-        @Index(name = "id_user_msg", columnList = "id_user_msg")
-})
 @Entity
-public class Message {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@Table(name = "message")
+public class Message extends BaseEntity {
     @Column(name = "content", nullable = false, length = 1500)
     private String content;
 
     @Column(name = "post_time", nullable = false)
     private LocalDate postTime;
 
-    @Column(name = "id_topic_msg", nullable = false)
-    private Long idTopicMsg;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_topic_msg", nullable = false)
+    private Topic idTopicMsg;
 
-    @Column(name = "id_user_msg", nullable = false)
-    private Long idUserMsg;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_user_msg", nullable = false)
+    private User idUserMsg;
 
-    public Long getIdUserMsg() {
+    public User getIdUserMsg() {
         return idUserMsg;
     }
 
-    public void setIdUserMsg(Long idUserMsg) {
+    public void setIdUserMsg(User idUserMsg) {
         this.idUserMsg = idUserMsg;
     }
 
-    public Long getIdTopicMsg() {
+    public Topic getIdTopicMsg() {
         return idTopicMsg;
     }
 
-    public void setIdTopicMsg(Long idTopicMsg) {
+    public void setIdTopicMsg(Topic idTopicMsg) {
         this.idTopicMsg = idTopicMsg;
     }
 
@@ -56,13 +50,5 @@ public class Message {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }

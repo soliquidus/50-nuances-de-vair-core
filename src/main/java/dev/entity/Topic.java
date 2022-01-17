@@ -3,42 +3,36 @@ package dev.entity;
 import javax.persistence.*;
 import java.time.Instant;
 
-@Table(name = "topic", indexes = {
-        @Index(name = "id_user_tpc", columnList = "id_user_tpc"),
-        @Index(name = "id_rubric_tpc", columnList = "id_rubric_tpc")
-})
 @Entity
-public class Topic {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id", nullable = false)
-    private Long id;
-
+@Table(name = "topic")
+public class Topic extends BaseEntity {
     @Column(name = "title", nullable = false, length = 50)
     private String title;
 
     @Column(name = "creation_date", nullable = false)
     private Instant creationDate;
 
-    @Column(name = "id_rubric_tpc", nullable = false)
-    private Long idRubricTpc;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_rubric_tpc", nullable = false)
+    private Rubric idRubricTpc;
 
-    @Column(name = "id_user_tpc", nullable = false)
-    private Long idUserTpc;
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_user_tpc", nullable = false)
+    private User idUserTpc;
 
-    public Long getIdUserTpc() {
+    public User getIdUserTpc() {
         return idUserTpc;
     }
 
-    public void setIdUserTpc(Long idUserTpc) {
+    public void setIdUserTpc(User idUserTpc) {
         this.idUserTpc = idUserTpc;
     }
 
-    public Long getIdRubricTpc() {
+    public Rubric getIdRubricTpc() {
         return idRubricTpc;
     }
 
-    public void setIdRubricTpc(Long idRubricTpc) {
+    public void setIdRubricTpc(Rubric idRubricTpc) {
         this.idRubricTpc = idRubricTpc;
     }
 
@@ -56,13 +50,5 @@ public class Topic {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 }
