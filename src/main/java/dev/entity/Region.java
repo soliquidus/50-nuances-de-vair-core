@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "region")
-public class Region extends BaseEntity {
+public class Region extends BaseEntite {
     @Column(name = "name", nullable = false, length = 50)
     private String name;
 
