@@ -2,8 +2,10 @@ package dev.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "sserda")
 public class Adress extends BaseEntite {
 	
 	@Column(nullable = false, length = 50)
