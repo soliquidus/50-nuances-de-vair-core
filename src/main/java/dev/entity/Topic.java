@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cipot")
-public class Topic extends BaseEntite {
+public class Topic extends BaseEntity {
 
     @Column(name="title", nullable = false, length = 50)
     private String title;

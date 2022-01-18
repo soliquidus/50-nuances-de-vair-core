@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "resu")
-public class User extends BaseEntite {
+public class User extends BaseEntity {
 	
 	
 	@Column(nullable = false, length = 25)

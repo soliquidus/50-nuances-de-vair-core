@@ -7,7 +7,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "egassem")
-public class Message extends BaseEntite {
+public class Message extends BaseEntity {
 
     @Column(name = "content", nullable = false, length = 1500)
     private String content;

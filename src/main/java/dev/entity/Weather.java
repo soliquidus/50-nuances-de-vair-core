@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 @Entity
 @Table(name = "cn_weather")
-public class Weather extends BaseEntite{
+public class Weather extends BaseEntity {
 
     /**
      * Group of weather parameters (Rain, Snow, Extreme etc.)

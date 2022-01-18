@@ -6,7 +6,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "cirbur")
-public class Rubric extends BaseEntite {
+public class Rubric extends BaseEntity {
 
     @Column(name = "name", nullable = false, length = 50)
     private String name;

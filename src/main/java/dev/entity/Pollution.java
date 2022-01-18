@@ -14,7 +14,7 @@ import java.time.LocalDate;
  */
 @Entity
 @Table(name = "cn_pollution")
-public class Pollution extends BaseEntite {
+public class Pollution extends BaseEntity {
     /**
      * Сoncentration of CO (Carbon monoxide), μg/m3
      */
