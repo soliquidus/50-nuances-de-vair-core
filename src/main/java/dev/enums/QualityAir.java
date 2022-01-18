@@ -1,4 +1,4 @@
-package dev.model.enums;
+package dev.enums;
 
 public enum QualityAir {
     GOOD,

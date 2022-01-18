@@ -1,7 +1,7 @@
 package dev.entity;
 
 
-import dev.model.enums.WeatherLabel;
+import dev.enums.WeatherLabel;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;

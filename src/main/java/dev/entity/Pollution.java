@@ -1,6 +1,6 @@
 package dev.entity;
 
-import dev.model.enums.QualityAir;
+import dev.enums.QualityAir;
 
 import javax.persistence.*;
 import java.time.LocalDate;
