@@ -1,16 +1,19 @@
 package dev.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
 @Table(name = "cn_department")
 public class Department extends BaseEntity {
+
+    @NotBlank
     @Column(length = 50)
     private String name;
 
-
-    private Integer departmentCode;
+    @NotBlank
+    private String departmentCode;
 
     @ManyToOne
     @JoinColumn(name = "id_region")
@@ -22,11 +25,10 @@ public class Department extends BaseEntity {
     public Department() {
     }
 
-    public Department(String name, Integer departmentCode, Region region, List<City> cities) {
+    public Department(String name, String departmentCode, Region region) {
         this.name = name;
         this.departmentCode = departmentCode;
         this.region = region;
-        this.cities = cities;
     }
 
     public String getName() {
@@ -37,11 +39,11 @@ public class Department extends BaseEntity {
         this.name = name;
     }
 
-    public Integer getDepartmentCode() {
+    public String getDepartmentCode() {
         return departmentCode;
     }
 
-    public void setDepartmentCode(Integer departmentCode) {
+    public void setDepartmentCode(String departmentCode) {
         this.departmentCode = departmentCode;
     }
 
