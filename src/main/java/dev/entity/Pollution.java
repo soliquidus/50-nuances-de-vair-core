@@ -67,13 +67,6 @@ public class Pollution extends BaseEntity {
      */
     private LocalDateTime date;
 
-    /**
-     * RELATION
-     * city relation
-     */
-     @OneToOne
-     private City city;
-
 
     /**
      * CONSTRUTOR

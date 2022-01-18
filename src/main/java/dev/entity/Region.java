@@ -12,8 +12,7 @@ public class Region extends BaseEntity {
     @Column(length = 2)
     private String regionCode;
 
-    @OneToMany
-    @JoinColumn(name = "id_department")
+    @OneToMany(mappedBy = "cities")
     private List<Department> department;
 
     public Region() {

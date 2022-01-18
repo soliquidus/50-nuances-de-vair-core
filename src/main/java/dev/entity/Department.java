@@ -16,7 +16,7 @@ public class Department extends BaseEntity {
     @JoinColumn(name = "id_region")
     private Region region;
 
-    @OneToMany
+    @OneToMany(mappedBy = "department")
     private List<City> cities;
 
     public Department() {
