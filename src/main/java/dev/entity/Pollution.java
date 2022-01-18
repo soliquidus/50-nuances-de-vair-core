@@ -63,7 +63,7 @@ public class Pollution extends BaseEntite {
     private QualityAir airQuality;
 
     /**
-     * Date
+     * Datetoday
      */
     private LocalDate date;
 

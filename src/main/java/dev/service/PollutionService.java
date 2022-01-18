@@ -13,7 +13,7 @@ import java.util.List;
 @PropertySource("classpath:application-api.properties")
 public class PollutionService {
 
-    @Value("${key.api-openweather}")
+    @Value("${key.api-open-weather}")
     private String apiKey;
 
     private final PollutionRepository repository;

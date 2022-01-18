@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-public interface PollutionRepository extends JpaRepository<Pollution,Integer> {
+public interface PollutionRepository extends JpaRepository<Pollution,Long> {
     /**
      * building the database.
      * @Bean verification of the current data of the day
