@@ -3,7 +3,7 @@ package dev.entity;
 import dev.enums.QualityAir;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 /**
  * Air Pollution API concept
@@ -65,15 +65,15 @@ public class Pollution extends BaseEntity {
     /**
      * Datetoday
      */
-    private LocalDate date;
+    private LocalDateTime date;
 
     /**
      * RELATION
      * city relation
-     @OneToOne
-     @JoinColumn(name = "id")
-     private City city;
      */
+     @OneToOne
+     private City city;
+
 
     /**
      * CONSTRUTOR
@@ -81,16 +81,7 @@ public class Pollution extends BaseEntity {
     public Pollution() {
     }
 
-    public Pollution(Long carbon,
-                     Long nitroMonoxide,
-                     Long nitroDioxide,
-                     Long ozone,
-                     Long sulphur,
-                     Long fineParticles,
-                     Long coarseParticles,
-                     Long ammonia,
-                     QualityAir airQuality,
-                     LocalDate date) {
+    public Pollution(Long carbon, Long nitroMonoxide, Long nitroDioxide, Long ozone, Long sulphur, Long fineParticles, Long coarseParticles, Long ammonia, QualityAir airQuality, LocalDateTime date) {
         this.carbon = carbon;
         this.nitroMonoxide = nitroMonoxide;
         this.nitroDioxide = nitroDioxide;
@@ -103,9 +94,6 @@ public class Pollution extends BaseEntity {
         this.date = date;
     }
 
-    /**
-     * GETTER AND SETTER
-     */
     public Long getCarbon() {
         return carbon;
     }
@@ -176,6 +164,14 @@ public class Pollution extends BaseEntity {
 
     public void setAirQuality(QualityAir airQuality) {
         this.airQuality = airQuality;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 }
 

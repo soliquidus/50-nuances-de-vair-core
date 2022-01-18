@@ -1,17 +1,37 @@
 package dev.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "region")
+@Table(name = "cn_region")
 public class Region extends BaseEntity {
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(length = 25)
     private String name;
 
-    @Column(name = "region_code", length = 10)
+    @Column(length = 2)
     private String regionCode;
+
+    @OneToMany
+    @JoinColumn(name = "id_department")
+    private List<Department> department;
+
+    public Region() {
+    }
+
+    public Region(String name, String regionCode, List<Department> department) {
+        this.name = name;
+        this.regionCode = regionCode;
+        this.department = department;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getRegionCode() {
         return regionCode;
@@ -21,11 +41,11 @@ public class Region extends BaseEntity {
         this.regionCode = regionCode;
     }
 
-    public String getName() {
-        return name;
+    public List<Department> getDepartment() {
+        return department;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setDepartment(List<Department> department) {
+        this.department = department;
     }
 }

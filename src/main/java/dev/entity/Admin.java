@@ -1,16 +1,31 @@
 package dev.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.List;
 
 @Entity
-@Table(name = "elbat")
+@Table(name = "cn_admin")
 public class Admin extends User {
 
-	public Admin(String userName, String firstName, String lastName, String email, String password,
-			Boolean activeAccount) {
-		super(userName, firstName, lastName, email, password, activeAccount);
-		// TODO Auto-generated constructor stub
+	@OneToMany(mappedBy = "admin")
+	private List<Rubric> rubrics;
+
+	public Admin() {
+		super();
 	}
 
+	public Admin(String userName, String firstName, String lastName, String email, String password, Boolean activeAccount, List<Message> messages, Address address, List<City> cities, List<Rubric> rubrics) {
+		super(userName, firstName, lastName, email, password, activeAccount, messages, address, cities);
+		this.rubrics = rubrics;
+	}
+
+	public List<Rubric> getRubrics() {
+		return rubrics;
+	}
+
+	public void setRubrics(List<Rubric> rubrics) {
+		this.rubrics = rubrics;
+	}
 }

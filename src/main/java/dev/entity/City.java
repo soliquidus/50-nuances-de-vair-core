@@ -2,48 +2,60 @@ package dev.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
-@Table(name = "city")
+@Table(name = "cn_city")
 public class City extends BaseEntity {
-    @Column(name = "name", nullable = false, length = 50)
+    @Column( length = 50)
     private String name;
 
-    @Column(name = "zip_code", nullable = false)
+    @Column
     private Integer zipCode;
 
-    @Column(name = "longitude", precision = 15, scale = 5)
+    @Column
     private BigDecimal longitude;
 
-    @Column(name = "latitude", precision = 15, scale = 5)
+    @Column
     private BigDecimal latitude;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_department_cty", nullable = false)
-    private Department idDepartmentCty;
+    @ManyToOne
+    @JoinColumn(name = "id_department")
+    private Department department;
 
-    public Department getIdDepartmentCty() {
-        return idDepartmentCty;
+    @OneToOne
+    private Census census;
+
+    @OneToOne
+    private Pollution pollution;
+
+    @OneToOne
+    private Weather weather;
+
+    @ManyToMany(mappedBy = "cities")
+    private List<User> users;
+
+    public City() {
     }
 
-    public void setIdDepartmentCty(Department idDepartmentCty) {
-        this.idDepartmentCty = idDepartmentCty;
-    }
-
-    public BigDecimal getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(BigDecimal latitude) {
-        this.latitude = latitude;
-    }
-
-    public BigDecimal getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(BigDecimal longitude) {
+    public City(String name, Integer zipCode, BigDecimal longitude, BigDecimal latitude, Department department, Census census, Pollution pollution, Weather weather, List<User> users) {
+        this.name = name;
+        this.zipCode = zipCode;
         this.longitude = longitude;
+        this.latitude = latitude;
+        this.department = department;
+        this.census = census;
+        this.pollution = pollution;
+        this.weather = weather;
+        this.users = users;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getZipCode() {
@@ -54,11 +66,59 @@ public class City extends BaseEntity {
         this.zipCode = zipCode;
     }
 
-    public String getName() {
-        return name;
+    public BigDecimal getLongitude() {
+        return longitude;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setLongitude(BigDecimal longitude) {
+        this.longitude = longitude;
+    }
+
+    public BigDecimal getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(BigDecimal latitude) {
+        this.latitude = latitude;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Census getCensus() {
+        return census;
+    }
+
+    public void setCensus(Census census) {
+        this.census = census;
+    }
+
+    public Pollution getPollution() {
+        return pollution;
+    }
+
+    public void setPollution(Pollution pollution) {
+        this.pollution = pollution;
+    }
+
+    public Weather getWeather() {
+        return weather;
+    }
+
+    public void setWeather(Weather weather) {
+        this.weather = weather;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

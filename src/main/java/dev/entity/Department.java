@@ -1,26 +1,40 @@
 package dev.entity;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "department")
+@Table(name = "cn_department")
 public class Department extends BaseEntity {
-    @Column(name = "name", nullable = false, length = 50)
+    @Column(length = 50)
     private String name;
 
-    @Column(name = "department_code")
+
     private Integer departmentCode;
 
-    @ManyToOne(optional = false)
-    @JoinColumn(name = "id_region_dep", nullable = false)
-    private Region idRegionDep;
+    @ManyToOne
+    @JoinColumn(name = "id_region")
+    private Region region;
 
-    public Region getIdRegionDep() {
-        return idRegionDep;
+    @OneToMany
+    private List<City> cities;
+
+    public Department() {
     }
 
-    public void setIdRegionDep(Region idRegionDep) {
-        this.idRegionDep = idRegionDep;
+    public Department(String name, Integer departmentCode, Region region, List<City> cities) {
+        this.name = name;
+        this.departmentCode = departmentCode;
+        this.region = region;
+        this.cities = cities;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getDepartmentCode() {
@@ -31,11 +45,19 @@ public class Department extends BaseEntity {
         this.departmentCode = departmentCode;
     }
 
-    public String getName() {
-        return name;
+    public Region getRegion() {
+        return region;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRegion(Region region) {
+        this.region = region;
+    }
+
+    public List<City> getCities() {
+        return cities;
+    }
+
+    public void setCities(List<City> cities) {
+        this.cities = cities;
     }
 }

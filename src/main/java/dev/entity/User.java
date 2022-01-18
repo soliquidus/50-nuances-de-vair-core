@@ -1,12 +1,11 @@
 package dev.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
-@Table(name = "resu")
+@Table(name = "cn_user")
 public class User extends BaseEntity {
 	
 	
@@ -26,17 +25,32 @@ public class User extends BaseEntity {
 	private String password;
 	
 	private Boolean activeAccount;
-	
-	
 
-	public User(String userName, String firstName, String lastName, String email, String password,
-			Boolean activeAccount) {
+	@OneToMany(mappedBy = "user")
+	private List<Message> messages;
+
+	@Embedded
+	private Address address;
+
+	@ManyToMany
+	@JoinTable(name="cn_favorite",
+			joinColumns = @JoinColumn(name = "id_user" ),
+			inverseJoinColumns =@JoinColumn(name = "id_city") )
+	private List<City> cities;
+
+	public User() {
+	}
+
+	public User(String userName, String firstName, String lastName, String email, String password, Boolean activeAccount, List<Message> messages, Address address, List<City> cities) {
 		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.activeAccount = activeAccount;
+		this.messages = messages;
+		this.address = address;
+		this.cities = cities;
 	}
 
 	public String getUserName() {
@@ -86,10 +100,28 @@ public class User extends BaseEntity {
 	public void setActiveAccount(Boolean activeAccount) {
 		this.activeAccount = activeAccount;
 	}
-	
-	
-		
-	
-	
 
+	public List<Message> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<Message> messages) {
+		this.messages = messages;
+	}
+
+	public Address getAddress() {
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public List<City> getCities() {
+		return cities;
+	}
+
+	public void setCities(List<City> cities) {
+		this.cities = cities;
+	}
 }

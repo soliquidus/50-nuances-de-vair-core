@@ -5,6 +5,7 @@ import dev.enums.WeatherLabel;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
@@ -39,21 +40,22 @@ public class Weather extends BaseEntity {
     /**
      * RELATION
      * city relation
-     @OneToOne
-     @JoinColumn(name = "id")
-     private City city;
      */
+     @OneToOne
+     private City city;
+
 
     public Weather() {
     }
 
-    public Weather(WeatherLabel description, Long temperature, Integer pressure, Integer humidity, Long windSpeed, LocalDate date) {
+    public Weather(WeatherLabel description, Long temperature, Integer pressure, Integer humidity, Long windSpeed, LocalDate date, City city) {
         this.description = description;
         this.temperature = temperature;
         this.pressure = pressure;
         this.humidity = humidity;
         this.windSpeed = windSpeed;
         this.date = date;
+        this.city = city;
     }
 
     public WeatherLabel getDescription() {
@@ -102,5 +104,13 @@ public class Weather extends BaseEntity {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public City getCity() {
+        return city;
+    }
+
+    public void setCity(City city) {
+        this.city = city;
     }
 }
