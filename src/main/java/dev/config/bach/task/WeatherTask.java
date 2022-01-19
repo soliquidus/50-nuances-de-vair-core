@@ -1,17 +1,15 @@
-package dev.config;
+package dev.config.bach.task;
 
 import dev.dto.WeatherDto;
 import dev.entity.City;
 import dev.entity.Weather;
 import dev.repository.WeatherRepository;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Configuration
+@Service
 @PropertySource("classpath:application-api.properties")
 public class WeatherTask {
    @Value("${key.api-open-weather}")
@@ -27,9 +25,7 @@ public class WeatherTask {
         this.weatherRepository = weatherRepository;
     }
 
-    @Bean
-    @Scope("prototype")
-    public Weather runWeatherTask(RestTemplate restTemplate,City city){
+    public Weather run(RestTemplate restTemplate,City city){
         /* request api open-weather */
         WeatherDto weatherDto = restTemplate.getForObject(
                 String.format(urlWeather,
