@@ -62,7 +62,7 @@ public class WeatherDto {
         private Integer humidity;
 
         public Float getCelcius() {
-            return celcius - 273.15F;
+            return celcius ;
         }
 
         public Integer getPressure() {
