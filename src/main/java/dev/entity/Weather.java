@@ -1,12 +1,13 @@
 package dev.entity;
 
 
+import dev.dto.WeatherDto;
 import dev.enums.WeatherLabel;
 
 import javax.persistence.Entity;
 import javax.persistence.Enumerated;
 import javax.persistence.Table;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "cn_weather")
@@ -18,7 +19,7 @@ public class Weather extends BaseEntity {
     @Enumerated
     private WeatherLabel description;
 
-    private Long temperature;
+    private Float temperature;
     /**
      *  Atmospheric pressure (on the sea level, if there is no sea_level or grnd_level data), hPa
      */
@@ -30,70 +31,85 @@ public class Weather extends BaseEntity {
     /**
      * Wind speed. Unit Default: meter/sec, Metric: meter/sec, Imperial: miles/hour
      */
-    private Long windSpeed;
+    private Float windSpeed;
     /**
      * Datetoday
      */
-    private LocalDate date;
+    private LocalDateTime date;
 
     public Weather() {
     }
 
-    public Weather(WeatherLabel description, Long temperature, Integer pressure, Integer humidity, Long windSpeed, LocalDate date, City city) {
+    public Weather(WeatherLabel description, Float temperature, Integer pressure, Integer humidity, Float windSpeed, LocalDateTime date) {
         this.description = description;
         this.temperature = temperature;
         this.pressure = pressure;
         this.humidity = humidity;
         this.windSpeed = windSpeed;
         this.date = date;
+    }
+
+    public Weather(WeatherDto weatherDto) {
+        this
+                .setDescription(weatherDto.getDescription())
+                .setTemperature(weatherDto.getTemperature())
+                .setPressure(weatherDto.getPressure())
+                .setHumidity(weatherDto.getHumidity())
+                .setWindSpeed(weatherDto.getWindSpeed())
+                .setDate(weatherDto.getDate());
     }
 
     public WeatherLabel getDescription() {
         return description;
     }
 
-    public void setDescription(WeatherLabel description) {
+    public Weather setDescription(WeatherLabel description) {
         this.description = description;
+        return this;
     }
 
-    public Long getTemperature() {
+    public Float getTemperature() {
         return temperature;
     }
 
-    public void setTemperature(Long temperature) {
+    public Weather setTemperature(Float temperature) {
         this.temperature = temperature;
+        return this;
     }
 
     public Integer getPressure() {
         return pressure;
     }
 
-    public void setPressure(Integer pressure) {
+    public Weather setPressure(Integer pressure) {
         this.pressure = pressure;
+        return this;
     }
 
     public Integer getHumidity() {
         return humidity;
     }
 
-    public void setHumidity(Integer humidity) {
+    public Weather setHumidity(Integer humidity) {
         this.humidity = humidity;
+        return this;
     }
 
-    public Long getWindSpeed() {
+    public Float getWindSpeed() {
         return windSpeed;
     }
 
-    public void setWindSpeed(Long windSpeed) {
+    public Weather setWindSpeed(Float windSpeed) {
         this.windSpeed = windSpeed;
+        return this;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public Weather setDate(LocalDateTime date) {
         this.date = date;
+        return this;
     }
-
 }
