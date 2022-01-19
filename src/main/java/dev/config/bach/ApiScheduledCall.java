@@ -1,20 +1,15 @@
 package dev.config.bach;
 
 
-import dev.config.bach.task.TaskController;
+import dev.config.bach.controller.TaskController;
 import dev.entity.City;
-import dev.entity.Pollution;
-import dev.entity.Weather;
-import dev.service.CityService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.*;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
 import javax.annotation.PostConstruct;
-import java.math.BigDecimal;
 import java.util.List;
 
 
