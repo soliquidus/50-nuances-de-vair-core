@@ -20,7 +20,7 @@ public class CityTask {
     public CityTask(CityService cityService) {
         this.cityService = cityService;
     }
-    /* /!\ Task programming after departmentTask */
+    /* /!\ Task programming after DepartmentTask */
     public void run(RestTemplate restTemplate, Integer codeDept){
         String url = String.format(urlCities,codeDept);
         CityDto[] cityDto = restTemplate.getForObject(url, CityDto[].class);
