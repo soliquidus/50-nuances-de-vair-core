@@ -10,9 +10,8 @@ import dev.enums.QualityAir;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@JsonIgnoreProperties({"coord"})
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class PollutionDto {
-
 
     @JsonProperty(value = "list")
     private List<Compos> compo;
