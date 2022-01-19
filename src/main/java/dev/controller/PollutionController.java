@@ -23,34 +23,34 @@ public class PollutionController {
         this.service = service;
     }
 
-//    /**
-//     *  Current air pollution data
-//     */
-//    @GetMapping("current")
-//    public Pollution getCurrentAirPollution(@RequestParam Long lat, Long lon ){
-//        return service.getCurrentAirPollution(lat, lon);
-//    }
-//
-//    /**
-//     *  Current air pollution data  by city
-//     */
-//    @GetMapping("current")
-//    public Pollution getCurrentAirPollutionByCity(@RequestParam String cityName ){
-//        return service.getCurrentAirPollutionByCity(cityName);
-//    }
-//
-//    /**
-//     *  Forecast air pollution data
-//     */
-//    @GetMapping("forecast")
-//    public List<Pollution> getForecastAirPollution(@RequestParam Long lat, Long lon , LocalDate startDate,LocalDate endDate){
-//        return service.getForecastAirPollution(lat, lon, startDate, endDate);
-//    }
-//    /**
-//     *  Forecast air pollution data by city
-//     */
-//    @GetMapping("forecast")
-//    public List<Pollution> getForecastAirPollutionByCity(@RequestParam String cityName , LocalDate startDate,LocalDate endDate){
-//        return service.getForecastAirPollutionByCity(cityName,startDate,endDate);
-//    }
+    /**
+     *  Current air pollution data
+     */
+    @GetMapping("current")
+    public Pollution getCurrentAirPollution(@RequestParam Long lat, Long lon ){
+        return service.getCurrentAirPollution(lat, lon);
+    }
+
+    /**
+     *  Current air pollution data  by city
+     */
+    @GetMapping("currentCity")
+    public Pollution getCurrentAirPollutionByCity(@RequestParam String cityName ){
+        return service.getCurrentAirPollutionByCity(cityName);
+    }
+
+    /**
+     *  Forecast air pollution data
+     */
+    @GetMapping("forecast")
+    public List<Pollution> getForecastAirPollution(@RequestParam Long lat, Long lon , LocalDate startDate,LocalDate endDate){
+        return service.getForecastAirPollution(lat, lon, startDate, endDate);
+    }
+    /**
+     *  Forecast air pollution data by city
+     */
+    @GetMapping("forecastCity")
+    public List<Pollution> getForecastAirPollutionByCity(@RequestParam String cityName , LocalDate startDate,LocalDate endDate){
+        return service.getForecastAirPollutionByCity(cityName,startDate,endDate);
+    }
 }
