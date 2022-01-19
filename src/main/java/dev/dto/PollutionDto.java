@@ -13,7 +13,7 @@ import java.util.List;
 @JsonIgnoreProperties({"coord"})
 public class PollutionDto {
 
-    private Coord coord;
+
     @JsonProperty(value = "list")
     private List<Compos> compo;
 
@@ -21,16 +21,6 @@ public class PollutionDto {
         return compo.get(0);
     }
 
-    public class Coord{
-        private Long lon;
-        private Long lat;
-        public Long getLon() {
-            return lon;
-        }
-        public Long getLat() {
-            return lat;
-        }
-    }
     @JsonRootName(value = "components")
     public static class Compos{
         @JsonProperty(value = "main")
