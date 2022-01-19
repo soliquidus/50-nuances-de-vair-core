@@ -15,6 +15,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
+import java.util.List;
 
 
 @Configuration
@@ -39,23 +40,21 @@ public class ApiScheduledCall {
     public void scheduleFixedDelayTask() {
         // boucle sur les départements
 //        appel de la liste de la ville du département
+        List<City> cities = taskController.getAllCities();
+        for(City city : cities){
+
+//            Pollution pollution = taskController.pollutionTaskController(city);
+//            Weather weather = taskController.
+        }
 //        boucle sur les villes
         // requêtes pollution
 //        Pollution pollution = context.getBean("runPollutionTask", Pollution.class);
         // requêtes weather
 //        Weather weather = context.getBean("runWeatherTask",Weather.class);
 //        enregistrement de la ville avec pollution / weather / census
-        City city = new City();
-        city.setLatitude(new BigDecimal(49.535));
-        city.setLongitude(new BigDecimal(3.8326));
-       Pollution pollution= taskController.PollutionTaskController(city);
-        LOGGER.info("MESSAGE scheduleFixedDelayTask {}",pollution);
 
-//        String url = "https://geo.api.gouv.fr/departements/85/communes";
-//        RestTemplate restTemplate = new RestTemplate();
-//        CityDto[] cityDto = restTemplate.getForObject(url, CityDto[].class);
-//        assert cityDto != null;
-//        this.cityService.createCities(List.of(cityDto));
+//        LOGGER.info("MESSAGE scheduleFixedDelayTask {}",);
+
     }
 
 }
