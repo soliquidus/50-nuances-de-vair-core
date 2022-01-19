@@ -2,6 +2,7 @@ package dev.config;
 
 
 import dev.entity.Pollution;
+import dev.entity.Weather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -9,7 +10,6 @@ import org.springframework.context.annotation.*;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import java.time.LocalDateTime;
 
 
 @Configuration
@@ -27,9 +27,9 @@ public class ApiScheduledCall {
     //    @Scheduled(cron = "0 0 6 * * ?")
     @Scheduled(fixedDelay = 1000)
     public void scheduleFixedDelayTask() {
-        Pollution pollution = context.getBean("runPollutionTask", Pollution.class);
-
-        LOGGER.info("{} polution entity to save {} ", LocalDateTime.now(), pollution);
+//        Pollution pollution = context.getBean("runPollutionTask", Pollution.class);
+        Weather weather = context.getBean("runWeatherTask",Weather.class);
+        LOGGER.info("{} polution entity to save  ", weather);
     }
 
 }
