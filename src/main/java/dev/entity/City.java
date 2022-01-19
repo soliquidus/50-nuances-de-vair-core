@@ -1,6 +1,7 @@
 package dev.entity;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -37,9 +38,11 @@ public class City extends BaseEntity {
     public City() {
     }
 
-    public City(String name, String zipCode, Department department) {
+    public City(String name, String zipCode, Double longitude, Double latitude, Department department) {
         this.name = name;
         this.zipCode = zipCode;
+        this.longitude = longitude;
+        this.latitude = latitude;
         this.department = department;
     }
 

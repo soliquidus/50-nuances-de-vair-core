@@ -2,6 +2,7 @@ package dev.dto;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
+import java.math.BigDecimal;
 
 public class CityDto {
 
@@ -14,10 +15,6 @@ public class CityDto {
 
     @NotBlank
     private String[] codesPostaux;
-
-    private double lon;
-
-    private double lat;
 
     public String getNom() {
         return nom;
@@ -43,21 +40,4 @@ public class CityDto {
         this.codesPostaux = codesPostaux;
     }
 
-    public double getLon() {
-        return lon;
-    }
-
-    public CityDto setLon(double lon) {
-        this.lon = lon;
-        return this;
-    }
-
-    public double getLat() {
-        return lat;
-    }
-
-    public CityDto setLat(double lat) {
-        this.lat = lat;
-        return this;
-    }
 }
