@@ -11,7 +11,7 @@ public class City extends BaseEntity {
     private String name;
 
     @Column
-    private Integer zipCode;
+    private String zipCode;
 
     @Column
     private BigDecimal longitude;
@@ -38,7 +38,13 @@ public class City extends BaseEntity {
     public City() {
     }
 
-    public City(String name, Integer zipCode, BigDecimal longitude, BigDecimal latitude, Department department, Census census, Pollution pollution, Weather weather, List<User> users) {
+    public City(String name, String zipCode, Department department) {
+        this.name = name;
+        this.zipCode = zipCode;
+        this.department = department;
+    }
+
+    public City(String name, String zipCode, BigDecimal longitude, BigDecimal latitude, Department department, Census census, Pollution pollution, Weather weather, List<User> users) {
         this.name = name;
         this.zipCode = zipCode;
         this.longitude = longitude;
@@ -58,11 +64,11 @@ public class City extends BaseEntity {
         this.name = name;
     }
 
-    public Integer getZipCode() {
+    public String getZipCode() {
         return zipCode;
     }
 
-    public void setZipCode(Integer zipCode) {
+    public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
     }
 
