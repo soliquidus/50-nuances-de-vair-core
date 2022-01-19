@@ -1,7 +1,6 @@
 package dev.controller;
 
 import dev.dto.CityDto;
-import dev.dto.CityGeocode;
 import dev.service.CityService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,13 +28,12 @@ public class CityController {
     }
 
     @GetMapping("/test")
-    public CityGeocode test() {
-        String url = "http://api.openweathermap.org/geo/1.0/zip?zip=85530,FR&appid=" + apiKey;
+    public Object test() {
+        String url = "https://api-adresse.data.gouv.fr/search/?q=nantes&postcode=44000&limit=1";
         RestTemplate test = new RestTemplate();
 
-        CityGeocode city = test.getForObject(url, CityGeocode.class);
-        assert city != null;
-        return city;
+        Object json = test.getForObject(url, Object.class);
+        return json;
     }
 
     @Transactional
