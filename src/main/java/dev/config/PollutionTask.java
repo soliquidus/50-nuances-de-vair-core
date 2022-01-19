@@ -21,7 +21,7 @@ public class PollutionTask {
 
     private final PollutionRepository pollutionRepository;
 
-    public PollutionTask(RestTemplateBuilder restTemplateBuilder,PollutionRepository pollutionRepository) {
+    public PollutionTask(PollutionRepository pollutionRepository) {
         this.pollutionRepository = pollutionRepository;
     }
 
