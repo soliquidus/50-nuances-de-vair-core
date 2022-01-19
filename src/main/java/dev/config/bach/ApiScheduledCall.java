@@ -26,8 +26,8 @@ public class ApiScheduledCall {
     }
 
     @PostConstruct
-    public void get() {
-        LOGGER.info("MESSAGE BOOT");
+    public void cityInitializeWithRelation() {
+       taskController.regionTaskController();
     }
 
     //    @Scheduled(cron = "0 0 6 * * ?")
@@ -35,12 +35,11 @@ public class ApiScheduledCall {
     public void scheduleFixedDelayTask() {
         // boucle sur les départements
 //        appel de la liste de la ville du département
-        List<City> cities = taskController.getAllCities();
-        for(City city : cities){
+
 
 //            Pollution pollution = taskController.pollutionTaskController(city);
 //            Weather weather = taskController.
-        }
+
 //        boucle sur les villes
         // requêtes pollution
 //        Pollution pollution = context.getBean("runPollutionTask", Pollution.class);
@@ -48,7 +47,7 @@ public class ApiScheduledCall {
 //        Weather weather = context.getBean("runWeatherTask",Weather.class);
 //        enregistrement de la ville avec pollution / weather / census
 
-//        LOGGER.info("MESSAGE scheduleFixedDelayTask {}",);
+        LOGGER.info("MESSAGE scheduleFixedDelayTask ");
 
     }
 
