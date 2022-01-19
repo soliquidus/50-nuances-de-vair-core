@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Service
@@ -19,13 +20,15 @@ public class RegionTask {
 
     private final RegionRepository regionRepository;
 
+
     public RegionTask(RegionRepository regionRepository) {
         this.regionRepository = regionRepository;
     }
+
     /* /!\ fisrt request before DepartmentTask and CityTask*/
     public void run(RestTemplate restTemplate ){
         RegionDto[] regionsDto = restTemplate.getForObject(urlRegion, RegionDto[].class);
         assert regionsDto != null;
-        Stream.of(regionsDto).map(Region::new).forEach(regionRepository::save);
+        regionRepository.saveAll(Stream.of(regionsDto).map(Region::new).collect(Collectors.toList()));
     }
 }
