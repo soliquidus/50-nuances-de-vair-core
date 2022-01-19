@@ -1,5 +1,8 @@
-package dev.config.bach.task;
+package dev.config.bach.controller;
 
+import dev.config.bach.task.CensusTask;
+import dev.config.bach.task.PollutionTask;
+import dev.config.bach.task.WeatherTask;
 import dev.entity.City;
 import dev.entity.Pollution;
 import dev.entity.Weather;
