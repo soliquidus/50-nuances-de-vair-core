@@ -1,5 +1,7 @@
 package dev.entity;
 
+import dev.dto.RegionDto;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -20,7 +22,7 @@ public class Region extends BaseEntity {
     private String regionCode;
 
     @OneToMany(mappedBy = "cities")
-    private List<Department> department;
+    private List<Department> department;// the set is preferred
 
     public Region() {
     }
@@ -29,7 +31,10 @@ public class Region extends BaseEntity {
         this.name = name;
         this.regionCode = regionCode;
     }
-
+    public Region(RegionDto regionDto){
+        this.name = regionDto.getNom();
+        this.regionCode = regionDto.getCode();
+    }
     public String getName() {
         return name;
     }
