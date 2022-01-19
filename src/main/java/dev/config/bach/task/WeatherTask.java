@@ -16,7 +16,7 @@ public class WeatherTask {
     private String keyApiWeather;
     @Value("${request.weather-open-weather}")
     private String urlWeather;
-    @Value("${state}")
+    @Value("${state.api-open-weather}")
     private String state;
 
     private final WeatherRepository weatherRepository;
