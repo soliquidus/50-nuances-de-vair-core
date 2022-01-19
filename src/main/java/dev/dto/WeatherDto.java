@@ -11,32 +11,32 @@ import java.util.List;
 public class WeatherDto {
 
     @JsonProperty(value = "weather")
-    private List<Description> description;
+    private List<Description> descriptionWeather;
     @JsonProperty(value = "main")
-    private List<MainWeather> weather;
-    private List<Wind> wind;
-    private LocalDateTime date;
+    private MainWeather mainWeather;
+    @JsonProperty(value = "wind")
+    private Wind wind;
 
 
     /* Getter*/
     public WeatherLabel getDescription() {
-        return description.get(0).getWeatherLabel();
+        return descriptionWeather.get(0).getWeatherLabel();
     }
 
     public Float getTemperature() {
-        return weather.get(0).getCelcius();
+        return mainWeather.getCelcius();
     }
 
     public Integer getPressure() {
-        return weather.get(0).getPressure();
+        return mainWeather.getPressure();
     }
 
     public Integer getHumidity() {
-        return weather.get(0).getHumidity();
+        return mainWeather.getHumidity();
     }
 
     public Float getWindSpeed() {
-        return wind.get(0).speed;
+        return wind.speed;
     }
 
     public LocalDateTime getDate() {
@@ -46,6 +46,7 @@ public class WeatherDto {
     /* Class */
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class Description {
+        @JsonProperty("icon")
         private String icon;
 
         public WeatherLabel getWeatherLabel() {
