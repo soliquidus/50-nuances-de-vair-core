@@ -16,12 +16,50 @@ public class PollutionDto {
     @JsonProperty(value = "list")
     private List<Compos> compo;
 
-    public Compos getCompo() {
-        return compo.get(0);
+    /*  Getter  */
+    public QualityAir getAirQuality() {
+        return compo.get(0).getAirQuality();
     }
 
+    public LocalDateTime getDate() {
+        return LocalDateTime.now();
+    }
+
+    public Long getCarbon() {
+        return compo.get(0).getCarbon();
+    }
+
+    public Long getNitroMonoxide() {
+        return compo.get(0).getNitroMonoxide();
+    }
+
+    public Long getNitroDioxide() {
+        return compo.get(0).getNitroDioxide();
+    }
+
+    public Long getOzone() {
+        return compo.get(0).getOzone();
+    }
+
+    public Long getSulphur() {
+        return compo.get(0).getSulphur();
+    }
+
+    public Long getFineParticles() {
+        return compo.get(0).getFineParticles();
+    }
+
+    public Long getCoarseParticles() {
+        return compo.get(0).getCoarseParticles();
+    }
+
+    public Long getAmmonia() {
+        return compo.get(0).getAmmonia();
+    }
+
+    /* Class */
     @JsonRootName(value = "components")
-    public static class Compos{
+    public static class Compos {
         @JsonProperty(value = "main")
         private JsonNode airQuality;
         @JsonProperty(value = "components")
@@ -30,11 +68,13 @@ public class PollutionDto {
         private String date;
 
         public QualityAir getAirQuality() {
-            return  QualityAir.byIndex(airQuality.path("aqi").asInt());
+            return QualityAir.byIndex(airQuality.path("aqi").asInt());
         }
-        public LocalDateTime getDate(){
+
+        public LocalDateTime getDate() {
             return LocalDateTime.now();
         }
+
         public Long getCarbon() {
             return pollution.getCarbon();
         }

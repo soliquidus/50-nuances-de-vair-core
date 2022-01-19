@@ -100,19 +100,18 @@ public class Pollution extends BaseEntity {
         this.date = date;
     }
 
-    public Pollution(PollutionDto json){
-        PollutionDto.Compos compo = json.getCompo();
+    public Pollution(PollutionDto pollutionDto){
         this
-                .setCarbon(compo.getCarbon())
-                .setNitroMonoxide(compo.getNitroMonoxide())
-                .setNitroDioxide(compo.getNitroDioxide())
-                .setOzone(compo.getOzone())
-                .setSulphur(compo.getSulphur())
-                .setFineParticles(compo.getFineParticles())
-                .setCoarseParticles(compo.getCoarseParticles())
-                .setAmmonia(compo.getAmmonia())
-                .setAirQuality(compo.getAirQuality())
-                .setDate(compo.getDate());
+                .setCarbon(pollutionDto.getCarbon())
+                .setNitroMonoxide(pollutionDto.getNitroMonoxide())
+                .setNitroDioxide(pollutionDto.getNitroDioxide())
+                .setOzone(pollutionDto.getOzone())
+                .setSulphur(pollutionDto.getSulphur())
+                .setFineParticles(pollutionDto.getFineParticles())
+                .setCoarseParticles(pollutionDto.getCoarseParticles())
+                .setAmmonia(pollutionDto.getAmmonia())
+                .setAirQuality(pollutionDto.getAirQuality())
+                .setDate(pollutionDto.getDate());
     }
 
     public Long getCarbon() {
