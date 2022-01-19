@@ -1,8 +1,7 @@
 package dev.config;
 
-import dev.dto.PollutionDto;
 import dev.entity.Pollution;
-import dev.json.PollutionJson;
+import dev.dto.PollutionDto;
 import dev.repository.PollutionRepository;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -32,11 +31,11 @@ public class PollutionTask {
         Double lat = 46.977;
         Double lon = 1.314;
         /* request api open-weather */
-        PollutionJson pollutionJson = buildTemplate.getForObject(
+        PollutionDto pollutionDto = buildTemplate.getForObject(
                 String.format(urlPollution, lat, lon, keyApiWeather),
-                PollutionJson.class);
+                PollutionDto.class);
         /* format response */
-        PollutionDto pollutionDto = new PollutionDto(pollutionJson);
-        return pollutionRepository.save(pollutionDto.convert());
+        Pollution pollution = new Pollution(pollutionDto);
+        return pollutionRepository.save(pollution);
     }
 }
