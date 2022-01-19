@@ -1,5 +1,6 @@
 package dev.config;
 
+import dev.entity.City;
 import dev.entity.Pollution;
 import dev.dto.PollutionDto;
 import dev.repository.PollutionRepository;
@@ -27,14 +28,13 @@ public class PollutionTask {
 
     @Bean
     @Scope("prototype")
-    public Pollution runPollutionTask(RestTemplate buildTemplate) {
-        Double lat = 46.977;
-        Double lon = 1.314;
+    public Pollution runPollutionTask(RestTemplate buildTemplate, City city) {
         /* request api open-weather */
         PollutionDto pollutionDto = buildTemplate.getForObject(
-                String.format(urlPollution, lat, lon, keyApiWeather),
+                String.format(urlPollution, city.getLatitude(), city.getLongitude(), keyApiWeather),
                 PollutionDto.class);
         /* format response */
+        assert pollutionDto != null;
         Pollution pollution = new Pollution(pollutionDto);
         return pollutionRepository.save(pollution);
     }

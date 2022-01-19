@@ -29,17 +29,16 @@ public class WeatherTask {
 
     @Bean
     @Scope("prototype")
-    public Weather runWeatherTask(RestTemplate restTemplate){
-        City city = new City();
-        city.setName("Montaigu");
-        city.setZipCode(85600);
+    public Weather runWeatherTask(RestTemplate restTemplate,City city){
         /* request api open-weather */
         WeatherDto weatherDto = restTemplate.getForObject(
                 String.format(urlWeather,
                         city.getName(),state,city.getZipCode(),keyApiWeather)
         ,WeatherDto.class);
         /* format response */
+        assert weatherDto != null;
         Weather weather = new Weather(weatherDto);
         return weatherRepository.save(weather);
     }
+
 }
