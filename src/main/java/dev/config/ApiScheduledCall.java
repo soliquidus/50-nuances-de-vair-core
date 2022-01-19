@@ -18,7 +18,6 @@ public class ApiScheduledCall {
 
     private final Logger LOGGER = LoggerFactory.getLogger(ApiScheduledCall.class);
 
-
     private final ApplicationContext context;
 
     public ApiScheduledCall(ApplicationContext context) {
