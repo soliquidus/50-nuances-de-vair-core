@@ -1,14 +1,21 @@
 package dev.entity;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
 @Table(name = "cn_region")
 public class Region extends BaseEntity {
-    @Column(length = 25)
+
+    @NotBlank
+    @Column(length = 100)
     private String name;
 
+    @NotBlank
     @Column(length = 2)
     private String regionCode;
 
@@ -18,10 +25,9 @@ public class Region extends BaseEntity {
     public Region() {
     }
 
-    public Region(String name, String regionCode, List<Department> department) {
+    public Region(String name, String regionCode) {
         this.name = name;
         this.regionCode = regionCode;
-        this.department = department;
     }
 
     public String getName() {
