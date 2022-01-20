@@ -4,11 +4,11 @@ public class CityJson {
 
     String type;
     String version;
-    Features[] features;
+    FeaturesJson[] features;
     String attribution;
     String licence;
     String query;
-    Filters filters;
+    FiltersJson filtersJson;
     String limit;
 
     public String getType() {
@@ -27,11 +27,11 @@ public class CityJson {
         this.version = version;
     }
 
-    public Features[] getFeatures() {
+    public FeaturesJson[] getFeatures() {
         return features;
     }
 
-    public void setFeatures(Features[] features) {
+    public void setFeatures(FeaturesJson[] features) {
         this.features = features;
     }
 
@@ -59,12 +59,12 @@ public class CityJson {
         this.query = query;
     }
 
-    public Filters getFilters() {
-        return filters;
+    public FiltersJson getFilters() {
+        return filtersJson;
     }
 
-    public void setFilters(Filters filters) {
-        this.filters = filters;
+    public void setFilters(FiltersJson filtersJson) {
+        this.filtersJson = filtersJson;
     }
 
     public String getLimit() {
