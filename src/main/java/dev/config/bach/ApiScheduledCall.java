@@ -2,18 +2,13 @@ package dev.config.bach;
 
 
 import dev.config.bach.controller.TaskController;
-import dev.entity.City;
-import dev.entity.Weather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.*;
 import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.client.HttpClientErrorException;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 @Configuration
@@ -38,8 +33,7 @@ public class ApiScheduledCall {
     public void cityInitializeWithRelation() {
 //        taskController.regionTaskController();
 //        taskController.departmentTaskController();
-//        taskController.cityTaskController();
-//        scheduleFixedDelayTask();
+        taskController.cityTaskController();
     }
 
     /*
@@ -53,17 +47,17 @@ public class ApiScheduledCall {
 //        @Scheduled(cron = "0 0 0 * * ?")
 
     public void scheduleFixedDelayTask() {
-        List<City> citiesError = new ArrayList<>();
-        taskController.getAllCities().forEach(city->{
-            try{
-                Weather weather = taskController.weatherTaskControler(city);
-                city.setWeather(weather);
-                taskController.citySaveByTaskController(city);
-            }catch (HttpClientErrorException e){
-                citiesError.add(city);
-            }
-        });
-        citiesError.forEach(c->LOGGER.info("error database for the city : {}",c));
-            LOGGER.info("test");
+//        List<City> citiesError = new ArrayList<>();
+//        taskController.getAllCities().forEach(city->{
+//            try{
+//                Weather weather = taskController.weatherTaskControler(city);
+//                city.setWeather(weather);
+//                taskController.citySaveByTaskController(city);
+//            }catch (HttpClientErrorException e){
+//                citiesError.add(city);
+//            }
+//        });
+//        citiesError.forEach(c->LOGGER.info("error database for the city : {}",c));
+//            LOGGER.info("test");
     }
 }
