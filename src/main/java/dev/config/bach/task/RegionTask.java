@@ -9,6 +9,7 @@ import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -25,6 +26,7 @@ public class RegionTask {
     }
 
     /* /!\ fisrt request before DepartmentTask and CityTask*/
+    @Transactional
     public void run(RestTemplate restTemplate )throws HttpClientErrorException {
         RegionDto[] regionsDto = restTemplate.getForObject(urlRegion, RegionDto[].class);
         assert regionsDto != null;

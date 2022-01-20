@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
@@ -24,6 +25,7 @@ public class CityLocalizedTask {
     @Value("${request.localized.city-geo-gouv}")
     private String urlLocalizedCity;
 
+    @Transactional
     public City run(RestTemplate buildTemplate, City city)throws HttpClientErrorException {
         /* request api open-weather */
         String url = String.format(urlLocalizedCity, city.getName(),city.getZipCode());
