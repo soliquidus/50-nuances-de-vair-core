@@ -8,14 +8,15 @@ public class DepartmentDto {
     @NotBlank
     @Size(max = 50)
     private String nom;
-
-    @NotBlank
-    @Size(max = 3)
+// delete because 2A and 2B  were transformed in 2
     private String code;
 
     @NotBlank
     @Size(max = 2)
     private String codeRegion;
+
+//    @JsonProperty(value="population")
+//    private BigInteger census;
 
     public String getNom() {
         return nom;
