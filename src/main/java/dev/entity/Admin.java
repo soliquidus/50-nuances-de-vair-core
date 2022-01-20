@@ -9,6 +9,8 @@ import java.util.List;
 @Table(name = "cn_admin")
 public class Admin extends User {
 
+	
+	
 	@OneToMany(mappedBy = "admin")
 	private List<Rubric> rubrics;
 
@@ -16,10 +18,15 @@ public class Admin extends User {
 		super();
 	}
 
-	public Admin(String userName, String firstName, String lastName, String email, String password, Boolean activeAccount, List<Message> messages, Address address, List<City> cities, List<Rubric> rubrics) {
-		super(userName, firstName, lastName, email, password, activeAccount, messages, address, cities);
+
+	public Admin(String userName, String firstName, String lastName, String email, String password,
+			Boolean isAccountActive, Boolean isAdmin, List<Message> messages, Address address, List<City> cities,
+			List<Rubric> rubrics) {
+		super(userName, firstName, lastName, email, password, isAccountActive, isAdmin, messages, address, cities);
 		this.rubrics = rubrics;
+		isAdmin = true;
 	}
+
 
 	public List<Rubric> getRubrics() {
 		return rubrics;

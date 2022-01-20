@@ -43,7 +43,6 @@ public class UserController {
 	}
 
 
-
 	@PutMapping("update/{id}")
 	public void updateUser(@PathVariable Long id, @RequestBody User user) {
 		Optional<User> userToUpdate = service.getUserById(id);
