@@ -1,7 +1,6 @@
 package dev.entity;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
@@ -14,10 +13,10 @@ public class City extends BaseEntity {
     private String zipCode;
 
     @Column
-    private BigDecimal longitude;
+    private Double longitude;
 
     @Column
-    private BigDecimal latitude;
+    private Double latitude;
 
     @ManyToOne
     @JoinColumn(name = "id_department")
@@ -46,7 +45,7 @@ public class City extends BaseEntity {
         this.department = department;
     }
 
-    public City(String name, String zipCode, BigDecimal longitude, BigDecimal latitude, Department department, Census census, Pollution pollution, Weather weather, List<User> users) {
+    public City(String name, String zipCode, Double longitude, Double latitude, Department department, Census census, Pollution pollution, Weather weather, List<User> users) {
         this.name = name;
         this.zipCode = zipCode;
         this.longitude = longitude;
@@ -74,19 +73,19 @@ public class City extends BaseEntity {
         this.zipCode = zipCode;
     }
 
-    public BigDecimal getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(BigDecimal longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 
-    public BigDecimal getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(BigDecimal latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
