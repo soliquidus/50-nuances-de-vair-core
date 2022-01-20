@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "cn_city",
         uniqueConstraints={
-        @UniqueConstraint(columnNames ={"column1","column2"})
+        @UniqueConstraint(columnNames ={"name","zipCode"})
 })
 public class City extends BaseEntity {
     @Column( length = 50)
