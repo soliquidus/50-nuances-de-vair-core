@@ -1,11 +1,9 @@
 package dev.config.bach.controller;
 
 
-import dev.config.bach.task.CityTask;
-import dev.config.bach.task.DepartmentTask;
-import dev.config.bach.task.RegionTask;
-import dev.config.bach.task.WeatherTask;
+import dev.config.bach.task.*;
 import dev.entity.City;
+import dev.entity.Pollution;
 import dev.entity.Weather;
 import dev.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +15,7 @@ import java.util.List;
 @Controller
 public class TaskController {
 
-    //    private CensusTask censusTask;
-//    private PollutionTask pollutionTask;
+    private PollutionTask pollutionTask;
     private WeatherTask weatherTask;
     private RestTemplate restTemplate;
     private RegionTask regionTask;
@@ -26,6 +23,9 @@ public class TaskController {
     private CityTask cityTask;
     private CityRepository cityRepository;
 
+    public Pollution pollutionTaskController(City city){
+        return this.pollutionTask.run(restTemplate,city);
+    }
 
     public Weather weatherTaskControler(City city) {
         return this.weatherTask.run(restTemplate, city);
@@ -42,21 +42,21 @@ public class TaskController {
     public void cityTaskController() {
         cityTask.run(restTemplate);
     }
+
     public void citySaveByTaskController(City city){
         cityRepository.save(city);
     }
+
     public List<City> getAllCities() {
         return cityRepository.findAll();
     }
 
-    //    @Autowired
-//    public void setCensusTask(CensusTask censusTask) {
-//        this.censusTask = censusTask;
-//    }
-//    @Autowired
-//    public void setPollutionTask(PollutionTask pollutionTask) {
-//        this.pollutionTask = pollutionTask;
-//    }
+
+    @Autowired
+    public void setPollutionTask(PollutionTask pollutionTask) {
+        this.pollutionTask = pollutionTask;
+    }
+
     @Autowired
     public void setWeatherTask(WeatherTask weatherTask) {
         this.weatherTask = weatherTask;
@@ -81,6 +81,7 @@ public class TaskController {
     public void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
+
     @Autowired
     public void setCityRepository(CityRepository cityRepository) {
         this.cityRepository = cityRepository;

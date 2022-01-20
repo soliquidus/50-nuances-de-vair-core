@@ -4,6 +4,7 @@ import dev.entity.City;
 import dev.entity.Pollution;
 import dev.dto.PollutionDto;
 import dev.repository.PollutionRepository;
+import dev.service.PollutionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,16 +15,16 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @PropertySource("classpath:application-api.properties")
 public class PollutionTask {
-    private Logger LOGGER = LoggerFactory.getLogger(PollutionTask.class);
+
     @Value("${key.api-open-weather}")
     private String keyApiWeather;
     @Value("${request.pollution-open-weather}")
     private String urlPollution;
 
-    private final PollutionRepository pollutionRepository;
+    private final PollutionService pollutionService;
 
-    public PollutionTask(PollutionRepository pollutionRepository) {
-        this.pollutionRepository = pollutionRepository;
+    public PollutionTask(PollutionService pollutionService) {
+        this.pollutionService = pollutionService;
     }
 
     public Pollution run(RestTemplate buildTemplate, City city) {
@@ -33,7 +34,7 @@ public class PollutionTask {
                 PollutionDto.class);
 //        /* format response */
         assert pollutionDto != null;
-        Pollution pollution = new Pollution(pollutionDto);
-        return pollutionRepository.save(pollution);
+        return new Pollution(pollutionDto);
+
     }
 }

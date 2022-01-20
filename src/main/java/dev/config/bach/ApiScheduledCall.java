@@ -31,8 +31,8 @@ public class ApiScheduledCall {
     */
     @PostConstruct
     public void cityInitializeWithRelation() {
-//        taskController.regionTaskController();
-//        taskController.departmentTaskController();
+        taskController.regionTaskController();
+        taskController.departmentTaskController();
 //        taskController.cityTaskController();
     }
 

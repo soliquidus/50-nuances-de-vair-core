@@ -1,5 +1,6 @@
 package dev.service;
 
+import dev.config.bach.task.CityLocalizedTask;
 import dev.dto.CityDto;
 import dev.dto.api.CityJson;
 import dev.dto.api.FeaturesJson;
