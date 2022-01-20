@@ -33,7 +33,7 @@ public class ApiScheduledCall {
     public void cityInitializeWithRelation() {
 //        taskController.regionTaskController();
 //        taskController.departmentTaskController();
-        taskController.cityTaskController();
+//        taskController.cityTaskController();
     }
 
     /*
