@@ -39,18 +39,19 @@ public class ApiScheduledCall {
 //        taskController.regionTaskController();
 //        taskController.departmentTaskController();
 //        taskController.cityTaskController();
+        scheduleFixedDelayTask();
     }
 
     /*
      * daily programming for pollution and weather data
      */
-        @Scheduled(cron = "0 0 4 * * ?")
-        @Scheduled(cron = "0 0 8 * * ?")
-        @Scheduled(cron = "0 0 12 * * ?")
-        @Scheduled(cron = "0 0 16 * * ?")
-        @Scheduled(cron = "0 0 20 * * ?")
-        @Scheduled(cron = "0 0 0 * * ?")
-//    @Scheduled(fixedDelay = 50000)
+//        @Scheduled(cron = "0 0 4 * * ?")
+//        @Scheduled(cron = "0 0 8 * * ?")
+//        @Scheduled(cron = "0 0 12 * * ?")
+//        @Scheduled(cron = "0 0 16 * * ?")
+//        @Scheduled(cron = "0 0 20 * * ?")
+//        @Scheduled(cron = "0 0 0 * * ?")
+
     public void scheduleFixedDelayTask() {
         List<City> citiesError = new ArrayList<>();
         taskController.getAllCities().forEach(city->{
