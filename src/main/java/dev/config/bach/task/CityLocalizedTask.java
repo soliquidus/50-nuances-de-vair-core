@@ -24,30 +24,22 @@ public class CityLocalizedTask {
     @Value("${request.localized.city-geo-gouv}")
     private String urlLocalizedCity;
 
-    private final CityRepository cityRepository;
-
-    public CityLocalizedTask(CityRepository cityRepository) {
-        this.cityRepository = cityRepository;
-    }
-
     public City run(RestTemplate buildTemplate, City city)throws HttpClientErrorException {
         /* request api open-weather */
-        CityJson cityJson = buildTemplate.getForObject(
-                String.format(urlLocalizedCity, city.getName(), city.getZipCode()),
-                CityJson.class);
-//        /* format response */
+        String url = String.format(urlLocalizedCity, city.getName(),city.getZipCode());
+        CityJson cityJson = buildTemplate.getForObject(url,CityJson.class);
+        /* format response */
         assert cityJson != null;
-        assertNull(city, cityJson);
-        return city;
-
+        return  assertNotNull(city, cityJson);
     }
 
-    public static void assertNull(City city, CityJson cityJson) {
+    public static City assertNotNull(City city, CityJson cityJson) {
         FeaturesJson features = cityJson.getFeatures()[0];
         GeometryJson geometry = features.getGeometry();
         Double longitude = geometry.getCoordinates()[0];
         Double latitude = geometry.getCoordinates()[1];
         city.setLatitude(latitude);
         city.setLongitude(longitude);
+        return city;
     }
 }
