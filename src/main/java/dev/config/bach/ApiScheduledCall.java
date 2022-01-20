@@ -2,18 +2,13 @@ package dev.config.bach;
 
 
 import dev.config.bach.controller.TaskController;
-import dev.entity.City;
-import dev.entity.Weather;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.*;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.web.client.HttpClientErrorException;
 
 import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Configuration
@@ -34,8 +29,8 @@ public class ApiScheduledCall {
 //        taskController.cityTaskController();
     }
 
-    //    @Scheduled(cron = "0 0 6 * * ?")
-    @Scheduled(fixedDelay = 10000000)
+    //    @Scheduled(cron = "0 00 6 * * ?")
+    @Scheduled(fixedRate = 1000)
     public void scheduleFixedDelayTask() {
 //        List<City> citiesError = new ArrayList<>();
 //        taskController.getAllCities().forEach(city->{
