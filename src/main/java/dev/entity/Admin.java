@@ -20,11 +20,9 @@ public class Admin extends User {
 
 
 	public Admin(String userName, String firstName, String lastName, String email, String password,
-			Boolean isAccountActive, Boolean isAdmin, List<Message> messages, Address address, List<City> cities,
-			List<Rubric> rubrics) {
-		super(userName, firstName, lastName, email, password, isAccountActive, isAdmin, messages, address, cities);
+			Boolean isAccountActive, List<Message> messages, Address address, List<City> cities, List<Rubric> rubrics) {
+		super(userName, firstName, lastName, email, password, isAccountActive, messages, address, cities);
 		this.rubrics = rubrics;
-		isAdmin = true;
 	}
 
 
