@@ -7,17 +7,17 @@ import javax.persistence.*;
 @Table(name = "cn_message")
 public class Message extends BaseEntity {
 
-    @Column(length = 1500)
+    @Column(nullable = false, length = 1500)
     private String content;
 
-    @Column
+    @Column(nullable = false)
     private LocalDateTime postTime;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
     private User user;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne()
     @JoinColumn(name = "id_topic")
     private Topic topic;
 

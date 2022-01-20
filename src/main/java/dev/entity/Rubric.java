@@ -14,7 +14,7 @@ public class Rubric extends BaseEntity {
     @JoinColumn(name = "id_admin")
     private Admin admin;
 
-    @OneToMany(mappedBy = "rubric")
+    @OneToMany(mappedBy = "rubric", cascade = CascadeType.REMOVE)
     private List<Topic> topics;
 
     public Rubric() {
