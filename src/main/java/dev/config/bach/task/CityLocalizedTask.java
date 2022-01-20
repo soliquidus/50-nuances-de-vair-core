@@ -6,11 +6,13 @@ import dev.dto.api.FeaturesJson;
 import dev.dto.api.GeometryJson;
 import dev.entity.City;
 import dev.entity.Pollution;
+import dev.repository.CityRepository;
 import dev.service.CityService;
 import dev.service.PollutionService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -19,30 +21,28 @@ import java.util.List;
 @PropertySource("classpath:application-api.properties")
 public class CityLocalizedTask {
 
-    @Value("${key.api-open-weather}")
-    private String keyApiWeather;
     @Value("${request.localized.city-geo-gouv}")
     private String urlLocalizedCity;
 
-    private final CityService cityService;
+    private final CityRepository cityRepository;
 
-    public CityLocalizedTask(CityService cityService) {
-        this.cityService = cityService;
+    public CityLocalizedTask(CityRepository cityRepository) {
+        this.cityRepository = cityRepository;
     }
 
-    public City run(RestTemplate buildTemplate, City city) {
+    public City run(RestTemplate buildTemplate, City city)throws HttpClientErrorException {
         /* request api open-weather */
         CityJson cityJson = buildTemplate.getForObject(
-                String.format(urlLocalizedCity, city.getName(), city.getZipCode(), keyApiWeather),
+                String.format(urlLocalizedCity, city.getName(), city.getZipCode()),
                 CityJson.class);
 //        /* format response */
+        assert cityJson != null;
         assertNull(city, cityJson);
         return city;
 
     }
 
     public static void assertNull(City city, CityJson cityJson) {
-        assert cityJson != null;
         FeaturesJson features = cityJson.getFeatures()[0];
         GeometryJson geometry = features.getGeometry();
         Double longitude = geometry.getCoordinates()[0];

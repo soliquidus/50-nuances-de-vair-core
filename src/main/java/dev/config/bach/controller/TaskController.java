@@ -8,6 +8,7 @@ import dev.entity.Weather;
 import dev.repository.CityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -21,29 +22,34 @@ public class TaskController {
     private RegionTask regionTask;
     private DepartmentTask departmentTask;
     private CityTask cityTask;
+    private CityLocalizedTask cityLocalizedTask;
     private CityRepository cityRepository;
 
-    public Pollution pollutionTaskController(City city){
-        return this.pollutionTask.run(restTemplate,city);
+    public Pollution pollutionTaskController(City city) throws HttpClientErrorException {
+        return this.pollutionTask.run(restTemplate, city);
     }
 
-    public Weather weatherTaskControler(City city) {
+    public Weather weatherTaskControler(City city) throws HttpClientErrorException {
         return this.weatherTask.run(restTemplate, city);
     }
 
-    public void regionTaskController() {
+    public void regionTaskController() throws HttpClientErrorException {
         regionTask.run(restTemplate);
     }
 
-    public void departmentTaskController() {
+    public void departmentTaskController() throws HttpClientErrorException {
         departmentTask.run(restTemplate);
     }
 
-    public void cityTaskController() {
+    public void cityTaskController() throws HttpClientErrorException {
         cityTask.run(restTemplate);
     }
 
-    public void citySaveByTaskController(City city){
+    public City cityLocalizeTaskController(City city) throws HttpClientErrorException {
+        return cityLocalizedTask.run(restTemplate, city);
+    }
+
+    public void citySaveByTaskController(City city) {
         cityRepository.save(city);
     }
 
@@ -78,12 +84,18 @@ public class TaskController {
     }
 
     @Autowired
+    public void setCityRepository(CityRepository cityRepository) {
+        this.cityRepository = cityRepository;
+    }
+
+    @Autowired
+    public void setCityLocalizedTask(CityLocalizedTask cityLocalizedTask) {
+        this.cityLocalizedTask = cityLocalizedTask;
+    }
+
+    @Autowired
     public void setRestTemplate(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
-    @Autowired
-    public void setCityRepository(CityRepository cityRepository) {
-        this.cityRepository = cityRepository;
-    }
 }

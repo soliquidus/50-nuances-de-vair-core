@@ -5,6 +5,7 @@ import dev.service.RegionService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 
@@ -24,7 +25,7 @@ public class RegionTask {
     }
 
     /* /!\ fisrt request before DepartmentTask and CityTask*/
-    public void run(RestTemplate restTemplate ){
+    public void run(RestTemplate restTemplate )throws HttpClientErrorException {
         RegionDto[] regionsDto = restTemplate.getForObject(urlRegion, RegionDto[].class);
         assert regionsDto != null;
         regionService.createRegions(List.of(regionsDto));

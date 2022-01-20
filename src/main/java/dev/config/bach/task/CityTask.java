@@ -19,7 +19,7 @@ import java.util.stream.Stream;
 @Service
 @PropertySource("classpath:application-api.properties")
 public class CityTask {
-private Logger LOGGER = LoggerFactory.getLogger(CityTask.class);
+    private Logger LOGGER = LoggerFactory.getLogger(CityTask.class);
     @Value("${request.cities-geo-gouv}")
     private String urlCities;
     @Value("${state.department-geo.gouv}")
@@ -33,31 +33,26 @@ private Logger LOGGER = LoggerFactory.getLogger(CityTask.class);
 
     /* /!\ Task programming after DepartmentTask */
     @Transactional
-    public void run(RestTemplate restTemplate) {
+    public void run(RestTemplate restTemplate) throws HttpClientErrorException {
         List<String> codeDept = createListDepartment();
         codeDept.addAll(specialDeptpartmentCode);
-        long start = System.currentTimeMillis();
+
         codeDept.forEach(code -> {
             String url = String.format(urlCities, code);
-            try{
-                CityDto[] cityDto = restTemplate.getForObject(url, CityDto[].class);
-                assert cityDto != null;
-                this.cityService.createCities(List.of(cityDto));
-            }catch (HttpClientErrorException e){
-                LOGGER.info(url);
-            }
+            CityDto[] cityDto = restTemplate.getForObject(url, CityDto[].class);
+            assert cityDto != null;
+            this.cityService.createCities(List.of(cityDto));
+
         });
-        long end = System.currentTimeMillis();
-        LOGGER.info(" Temps exécution : {}",(end-start)/1000);
     }
 
     private List<String> createListDepartment() {
         AtomicInteger index = new AtomicInteger(1);
         return Stream.of(new Integer[95])
                 .map(c -> index.getAndIncrement())
-                .filter(i->i!=20)
+                .filter(i -> i != 20)
                 .map(String::valueOf)
-                .map(str->str.length()==1?"0"+str:str)
+                .map(str -> str.length() == 1 ? "0" + str : str)
                 .collect(Collectors.toList());
     }
 }

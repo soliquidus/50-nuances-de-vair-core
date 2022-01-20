@@ -5,6 +5,7 @@ import dev.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Arrays;
@@ -21,7 +22,7 @@ public class DepartmentTask {
         this.departmentService = departmentService;
     }
     /* /!\ Task programming after RegionTask*/
-    public void run(RestTemplate restTemplate){
+    public void run(RestTemplate restTemplate)throws HttpClientErrorException {
         DepartmentDto[] departmentsDto = restTemplate.getForObject(urlDepartment, DepartmentDto[].class);
         assert departmentsDto != null;
         this.departmentService.createDepartments(Arrays.asList(departmentsDto));

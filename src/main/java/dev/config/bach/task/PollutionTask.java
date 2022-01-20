@@ -10,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
@@ -21,20 +23,20 @@ public class PollutionTask {
     @Value("${request.pollution-open-weather}")
     private String urlPollution;
 
-    private final PollutionService pollutionService;
+    private final PollutionRepository pollutionRepository;
 
-    public PollutionTask(PollutionService pollutionService) {
-        this.pollutionService = pollutionService;
+    public PollutionTask(PollutionRepository pollutionRepository) {
+        this.pollutionRepository = pollutionRepository;
     }
 
-    public Pollution run(RestTemplate buildTemplate, City city) {
+    @Transactional
+    public Pollution run(RestTemplate buildTemplate, City city) throws HttpClientErrorException {
         /* request api open-weather */
-        PollutionDto pollutionDto = buildTemplate.getForObject(
-                String.format(urlPollution, city.getLatitude(), city.getLongitude(), keyApiWeather),
-                PollutionDto.class);
+        String url = String.format(urlPollution, city.getLatitude(), city.getLongitude(), keyApiWeather);
+        PollutionDto pollutionDto = buildTemplate.getForObject(url, PollutionDto.class);
 //        /* format response */
         assert pollutionDto != null;
-        return new Pollution(pollutionDto);
+        return pollutionRepository.save(new Pollution(pollutionDto));
 
     }
 }
