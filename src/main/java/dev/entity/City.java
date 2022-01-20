@@ -5,7 +5,10 @@ import java.math.BigDecimal;
 import java.util.List;
 
 @Entity
-@Table(name = "cn_city")
+@Table(name = "cn_city",
+        uniqueConstraints={
+        @UniqueConstraint(columnNames ={"column1","column2"})
+})
 public class City extends BaseEntity {
     @Column( length = 50)
     private String name;
