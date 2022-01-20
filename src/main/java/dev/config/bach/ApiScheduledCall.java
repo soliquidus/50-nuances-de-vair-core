@@ -22,6 +22,13 @@ public class ApiScheduledCall {
         this.taskController = taskController;
     }
 
+    /**
+    * launch initializer of the table
+    * cn_region
+    * cn_department
+    * cn_city
+    * the order of initialization is very important for relations
+    */
     @PostConstruct
     public void cityInitializeWithRelation() {
 //        taskController.regionTaskController();
@@ -29,7 +36,15 @@ public class ApiScheduledCall {
 //        taskController.cityTaskController();
     }
 
-    //    @Scheduled(cron = "0 00 6 * * ?")
+    /*
+     * daily programming for pollution and weather data
+     */
+    //    @Scheduled(cron = "0 0 4 * * ?")
+    //    @Scheduled(cron = "0 0 8 * * ?")
+    //    @Scheduled(cron = "0 0 12 * * ?")
+    //    @Scheduled(cron = "0 0 16 * * ?")
+    //    @Scheduled(cron = "0 0 20 * * ?")
+    //    @Scheduled(cron = "0 0 0 * * ?")
     @Scheduled(fixedRate = 1000)
     public void scheduleFixedDelayTask() {
 //        List<City> citiesError = new ArrayList<>();
@@ -43,6 +58,7 @@ public class ApiScheduledCall {
 //            }
 //        });
 //        citiesError.forEach(c->LOGGER.info("error database for the city : {}",c));
+            LOGGER.info("test");
     }
 
 }
