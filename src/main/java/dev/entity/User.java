@@ -43,22 +43,20 @@ public class User extends BaseEntity {
 	public User() {
 	}
 
-	
 
-	public User(String userName, String firstName, String lastName, String email, String password,
-			Boolean isAccountActive, List<Message> messages, Address address, List<City> cities) {
+	public User(String userName, String firstName, String lastName, String email, String password, Boolean isAccountActive, boolean isAdmin,
+			List<Message> messages, Address address, List<City> cities) {
 		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
 		this.isAccountActive = isAccountActive;
+		this.isAdmin = isAdmin;
 		this.messages = messages;
 		this.address = address;
 		this.cities = cities;
 	}
-
-
 
 	public String getUserName() {
 		return userName;
