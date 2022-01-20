@@ -8,20 +8,20 @@ import javax.persistence.*;
 @Table(name = "cn_topic")
 public class Topic extends BaseEntity {
 
-    @Column(length = 50)
+    @Column(nullable = false, length = 50)
     private String title;
 
-    @Column
+    @Column(nullable = false)
     private LocalDateTime creationDate;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
     private User user;
 
-    @OneToMany(mappedBy = "topic")
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.REMOVE)
     private List<Message> messages;
 
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne()
     @JoinColumn(name = "id_rubric")
     private Rubric rubric;
 

@@ -2,6 +2,7 @@ package dev.service;
 
 import java.util.List;
 
+import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Service;
@@ -19,12 +20,10 @@ public class UserService {
 		this.repository = repository;
 	}
 
-
-	
 	
 	public List<User> getAllUsers() {
 		
-		return (List<User>) repository.findAll();
+		return repository.findAll();
 	}
 	
 	
@@ -33,5 +32,31 @@ public class UserService {
 		
 		return repository.save(user);
 	}
-	
+
+	public Optional<User> getUserById(Long id){
+		return this.repository.findById(id);
+	}
+
+	@Transactional
+	public void deleteUserById(Long id) {
+
+		repository.deleteById(id);
+	}
+
+	@Transactional
+	public void updateUser(Long id, User user){
+		Optional<User> userToUpdate = getUserById(id);
+		User forUpdate = userToUpdate.get();
+		forUpdate.setUserName(user.getUserName());
+		forUpdate.setFirstName(user.getFirstName());
+		forUpdate.setLastName(user.getLastName());
+		forUpdate.setEmail(user.getEmail());
+		forUpdate.setPassword(user.getPassword());
+		forUpdate.setIsAccountActive(user.getIsAccountActive());
+		forUpdate.setAddress(user.getAddress());
+		repository.save(forUpdate);
+	}
+
+
+
 }

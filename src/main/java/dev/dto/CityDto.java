@@ -1,12 +1,10 @@
 package dev.dto;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 public class CityDto {
 
     @NotBlank
-    @Size(max = 50)
     private String nom;
 
     @NotBlank
@@ -38,4 +36,5 @@ public class CityDto {
     public void setCodesPostaux(String[] codesPostaux) {
         this.codesPostaux = codesPostaux;
     }
+
 }
