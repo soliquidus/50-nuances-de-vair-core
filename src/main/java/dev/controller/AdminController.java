@@ -44,6 +44,7 @@ public class AdminController {
 
 	@PostMapping("/add")
 	public Admin addAdmin(@RequestBody Admin admin) {
+		admin.setIsAdmin(true);
 		return service.addAdmin(admin);
 	}
 
