@@ -2,10 +2,12 @@ package dev.service;
 
 import dev.dto.CityDto;
 import dev.dto.api.CityJson;
+import dev.dto.api.FeaturesJson;
+import dev.dto.api.GeometryJson;
+import dev.entity.City;
 import dev.entity.Department;
 import dev.repository.CityRepository;
 import dev.repository.DepartmentRepository;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -17,8 +19,6 @@ public class CityService {
 
     private final CityRepository cityRepository;
     private final DepartmentRepository departmentRepository;
-    @Value("${key.api-open-weather}")
-    private String apiKey;
 
     public CityService(CityRepository cityRepository, DepartmentRepository departmentRepository) {
         this.cityRepository = cityRepository;
@@ -33,15 +33,31 @@ public class CityService {
             String zipCode = zipCodes[0];
             String name = cityDto.getNom();
 
-            String url = "https://api-adresse.data.gouv.fr/search/?q=" + name + "&postcode=" + zipCode + "&limit=1";
-            RestTemplate restTemplate = new RestTemplate();
-            CityJson cityGeoCode = restTemplate.getForObject(url, CityJson.class);
-            assert cityGeoCode != null;
-//            Double longitude = cityGeoCode.getLon();
-//            Double lattitude = cityGeoCode.getLat();
+            City city = new City(name, zipCode, department);
+            this.cityRepository.save(city);
+        }
+    }
 
-//            City city = new City(cityDto.getNom(), zipCode, department);
-//            this.cityRepository.save(city);
+    @Transactional
+    public void getGeoData() {
+        List<City> cities = this.cityRepository.findAll();
+        for (City city : cities) {
+
+            String url = "https://api-adresse.data.gouv.fr/search/?q=" + city.getName() + "&postcode=" + city.getZipCode() + "&limit=1";
+
+            RestTemplate test = new RestTemplate();
+
+            CityJson json = test.getForObject(url, CityJson.class);
+            assert json != null;
+            FeaturesJson features = json.getFeatures()[0];
+            GeometryJson geometry = features.getGeometry();
+            Double longitude = geometry.getCoordinates()[0];
+            Double latitude = geometry.getCoordinates()[1];
+
+            city.setLatitude(latitude);
+            city.setLongitude(longitude);
+
+            this.cityRepository.save(city);
         }
     }
 }
