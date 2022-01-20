@@ -53,7 +53,7 @@ public List<Admin> getAllAdmins() {
 		forUpdate.setLastName(admin.getLastName());
 		forUpdate.setEmail(admin.getEmail());
 		forUpdate.setPassword(admin.getPassword());
-		forUpdate.setActiveAccount(admin.getActiveAccount());
+		forUpdate.setIsAccountActive(admin.getIsAccountActive());
 		forUpdate.setAddress(admin.getAddress());
 		repository.save(forUpdate);
 	}
@@ -62,10 +62,10 @@ public List<Admin> getAllAdmins() {
 	public void switchAccountActivationUser (Long id){
 		Optional<User> userToActivate = userRepository.findById(id);
 		User forUpdate = userToActivate.get();
-		if(forUpdate.getActiveAccount() == true) {
-			forUpdate.setActiveAccount(false);
-		} else if (forUpdate.getActiveAccount() == false){
-			forUpdate.setActiveAccount(true);
+		if(forUpdate.getIsAccountActive() == true) {
+			forUpdate.setIsAccountActive(false);
+		} else if (forUpdate.getIsAccountActive() == false){
+			forUpdate.setIsAccountActive(true);
 		}
 		userRepository.save(forUpdate);
 	}

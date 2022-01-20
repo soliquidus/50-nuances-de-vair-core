@@ -24,7 +24,9 @@ public class User extends BaseEntity {
 	@Column(nullable = false, length = 50)
 	private String password;
 	
-	private Boolean activeAccount;
+	private Boolean isAccountActive;
+	
+	private boolean isAdmin;
 
 	@OneToMany(mappedBy = "user")
 	private List<Message> messages;
@@ -41,17 +43,23 @@ public class User extends BaseEntity {
 	public User() {
 	}
 
-	public User(String userName, String firstName, String lastName, String email, String password, Boolean activeAccount, List<Message> messages, Address address, List<City> cities) {
+	
+
+	public User(String userName, String firstName, String lastName, String email, String password,
+			Boolean isAccountActive, Boolean isAdmin, List<Message> messages, Address address, List<City> cities) {
 		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
 		this.password = password;
-		this.activeAccount = activeAccount;
+		this.isAccountActive = isAccountActive;
+		this.isAdmin = isAdmin;
 		this.messages = messages;
 		this.address = address;
 		this.cities = cities;
 	}
+
+
 
 	public String getUserName() {
 		return userName;
@@ -93,13 +101,28 @@ public class User extends BaseEntity {
 		this.password = password;
 	}
 
-	public Boolean getActiveAccount() {
-		return activeAccount;
+	public Boolean getIsAccountActive() {
+		return isAccountActive;
 	}
 
-	public void setActiveAccount(Boolean activeAccount) {
-		this.activeAccount = activeAccount;
+
+
+	public void setIsAccountActive(Boolean isAccountActive) {
+		this.isAccountActive = isAccountActive;
 	}
+
+
+
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+
+
+
+	public void setIsAdmin(Boolean isAdmin) {
+		this.isAdmin = isAdmin;
+	}
+
 
 	public List<Message> getMessages() {
 		return messages;

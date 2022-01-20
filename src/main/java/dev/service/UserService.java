@@ -20,8 +20,6 @@ public class UserService {
 		this.repository = repository;
 	}
 
-
-	
 	
 	public List<User> getAllUsers() {
 		
@@ -54,7 +52,7 @@ public class UserService {
 		forUpdate.setLastName(user.getLastName());
 		forUpdate.setEmail(user.getEmail());
 		forUpdate.setPassword(user.getPassword());
-		forUpdate.setActiveAccount(user.getActiveAccount());
+		forUpdate.setIsAccountActive(user.getIsAccountActive());
 		forUpdate.setAddress(user.getAddress());
 		repository.save(forUpdate);
 	}
