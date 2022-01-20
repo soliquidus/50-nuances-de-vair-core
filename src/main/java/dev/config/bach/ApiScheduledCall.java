@@ -39,7 +39,7 @@ public class ApiScheduledCall {
 //        taskController.regionTaskController();
 //        taskController.departmentTaskController();
 //        taskController.cityTaskController();
-        scheduleFixedDelayTask();
+//        scheduleFixedDelayTask();
     }
 
     /*
