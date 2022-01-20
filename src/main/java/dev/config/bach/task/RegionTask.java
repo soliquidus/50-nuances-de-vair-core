@@ -1,8 +1,6 @@
 package dev.config.bach.task;
 
 import dev.dto.RegionDto;
-import dev.entity.Region;
-import dev.repository.RegionRepository;
 import dev.service.RegionService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
