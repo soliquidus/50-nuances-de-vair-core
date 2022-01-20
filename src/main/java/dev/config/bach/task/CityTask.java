@@ -28,16 +28,19 @@ public class CityTask {
     }
     /* /!\ Task programming after DepartmentTask */
     public void run(RestTemplate restTemplate) {
+        /* codeDept is a list of departments */
         List<String> codeDept = createListDepartment();
         codeDept.addAll(specialDeptpartmentCode);
+
         codeDept.forEach(code -> {
+            /* timer to regulate the flow */
             new Timer().schedule(
                     new CityWebClient(restTemplate, cityService, code)
                     , 10000, 10000);
         });
 
     }
-
+    /* create the list of departments */
     private List<String> createListDepartment() {
         AtomicInteger index = new AtomicInteger(1);
         return Stream.of(new Integer[95])
@@ -45,7 +48,7 @@ public class CityTask {
                 .map(String::valueOf)
                 .collect(Collectors.toList());
     }
-
+    /* task managed by the timer */
     class CityWebClient extends TimerTask {
         private final RestTemplate restTemplate;
         private final CityService cityService;
