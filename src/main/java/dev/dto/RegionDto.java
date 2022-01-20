@@ -1,16 +1,13 @@
 package dev.dto;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 public class RegionDto {
 
     @NotBlank
-    @Size(max = 100)
     private String nom;
 
     @NotBlank
-    @Size(max = 2)
     private String code;
 
     public String getNom() {

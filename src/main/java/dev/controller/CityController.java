@@ -21,7 +21,7 @@ public class CityController {
 
     private final CityService cityService;
 
-    @Value("${get.cities.for.test}")
+    @Value("${get.cities}")
     private String url;
 
     public CityController(CityService cityService) {
@@ -40,7 +40,6 @@ public class CityController {
         return geometry;
     }
 
-    @Transactional
     @PostMapping("/save")
     public void addCities() {
         RestTemplate restTemplate = new RestTemplate();

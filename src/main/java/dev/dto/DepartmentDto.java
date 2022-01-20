@@ -1,20 +1,16 @@
 package dev.dto;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Size;
 
 public class DepartmentDto {
 
     @NotBlank
-    @Size(max = 50)
     private String nom;
 
     @NotBlank
-    @Size(max = 3)
     private String code;
 
     @NotBlank
-    @Size(max = 2)
     private String codeRegion;
 
     public String getNom() {
