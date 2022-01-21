@@ -27,7 +27,11 @@ public class User extends BaseEntity {
 	private Boolean isAccountActive;
 	
 	private boolean isAdmin;
+	
+	private boolean isAlertAccepted;
 
+	private boolean isPubCookiesDeclined;
+	
 	@OneToMany(mappedBy = "user")
 	private List<Message> messages;
 
@@ -44,7 +48,8 @@ public class User extends BaseEntity {
 	}
 
 
-	public User(String userName, String firstName, String lastName, String email, String password, Boolean isAccountActive, boolean isAdmin,
+	public User(String userName, String firstName, String lastName, String email, String password,
+			Boolean isAccountActive, boolean isAdmin, boolean isAlertAccepted, boolean isPubCookiesDeclined,
 			List<Message> messages, Address address, List<City> cities) {
 		this.userName = userName;
 		this.firstName = firstName;
@@ -53,10 +58,14 @@ public class User extends BaseEntity {
 		this.password = password;
 		this.isAccountActive = isAccountActive;
 		this.isAdmin = isAdmin;
+		this.isAlertAccepted = isAlertAccepted;
+		this.isPubCookiesDeclined = isPubCookiesDeclined;
 		this.messages = messages;
 		this.address = address;
 		this.cities = cities;
 	}
+
+
 
 	public String getUserName() {
 		return userName;
