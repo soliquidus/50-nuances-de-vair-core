@@ -1,77 +1,81 @@
 package dev.dto.api;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CityJson {
 
-    String type;
-    String version;
-    FeaturesJson[] features;
-    String attribution;
-    String licence;
-    String query;
-    FiltersJson filtersJson;
-    String limit;
+    @JsonProperty("features")
+    FeaturesJson[] featuresJsons;
 
-    public String getType() {
-        return type;
+    public FeaturesJson[] getFeaturesJsons() {
+        return featuresJsons;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public CityJson setFeaturesJsons(FeaturesJson[] featuresJsons) {
+        this.featuresJsons = featuresJsons;
+        return this;
     }
 
-    public String getVersion() {
-        return version;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class FeaturesJson {
+
+        @JsonProperty("geometry")
+        GeometryJson geometryJson;
+
+        @JsonProperty("properties")
+        PropertiesJson propertiesJson;
+
+        public GeometryJson getGeometryJson() {
+            return geometryJson;
+        }
+
+        public FeaturesJson setGeometryJson(GeometryJson geometryJson) {
+            this.geometryJson = geometryJson;
+            return this;
+        }
+
+        public PropertiesJson getPropertiesJson() {
+            return propertiesJson;
+        }
+
+        public FeaturesJson setPropertiesJson(PropertiesJson propertiesJson) {
+            this.propertiesJson = propertiesJson;
+            return this;
+        }
     }
 
-    public void setVersion(String version) {
-        this.version = version;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class GeometryJson {
+
+        @JsonProperty("coordinates")
+        Double[] geoLocalisation;
+
+        public Double[] getGeoLocalisation() {
+            return geoLocalisation;
+        }
+
+        public GeometryJson setGeoLocalisation(Double[] geoLocalisation) {
+            this.geoLocalisation = geoLocalisation;
+            return this;
+        }
     }
 
-    public FeaturesJson[] getFeatures() {
-        return features;
+    @JsonIgnoreProperties(ignoreUnknown = true)
+    public static class PropertiesJson {
+
+        @JsonProperty("population")
+        Long census;
+
+        public Long getCensus() {
+            return census;
+        }
+
+        public PropertiesJson setCensus(Long census) {
+            this.census = census;
+            return this;
+        }
     }
 
-    public void setFeatures(FeaturesJson[] features) {
-        this.features = features;
-    }
-
-    public String getAttribution() {
-        return attribution;
-    }
-
-    public void setAttribution(String attribution) {
-        this.attribution = attribution;
-    }
-
-    public String getLicence() {
-        return licence;
-    }
-
-    public void setLicence(String licence) {
-        this.licence = licence;
-    }
-
-    public String getQuery() {
-        return query;
-    }
-
-    public void setQuery(String query) {
-        this.query = query;
-    }
-
-    public FiltersJson getFilters() {
-        return filtersJson;
-    }
-
-    public void setFilters(FiltersJson filtersJson) {
-        this.filtersJson = filtersJson;
-    }
-
-    public String getLimit() {
-        return limit;
-    }
-
-    public void setLimit(String limit) {
-        this.limit = limit;
-    }
 }
