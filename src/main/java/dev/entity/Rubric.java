@@ -14,6 +14,10 @@ public class Rubric extends BaseEntity {
     @JoinColumn(name = "id_admin")
     private Admin admin;
 
+    @ManyToOne
+    @JoinColumn(name = "id_category")
+    private Category category;
+
     @OneToMany(mappedBy = "rubric", cascade = CascadeType.REMOVE)
     private List<Topic> topics;
 

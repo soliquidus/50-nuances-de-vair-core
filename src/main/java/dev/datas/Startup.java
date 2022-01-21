@@ -41,7 +41,7 @@ public class Startup {
 		
 		if ((this.adminRepository.count() == 0) && (this.userRepository.count() == 0) && (this.rubricRepository.count() == 0) && (this.topicRepository.count() == 0)) {
 			
-			Admin admin = new Admin("admin", "prenom", "nom", "email@email.fr", "password-admin", true, true, null, new Address("street", "number", "complement"), null, null);
+			Admin admin = new Admin("admin", "prenom", "nom", "email@email.fr", "password-admin", true, true, null, new Address("street", "number", "complement"), null, null, null);
 			adminRepository.save(admin);
 
 			IntStream.of(1, 2, 3, 4, 5).mapToObj(i -> new User("username" + i, "prenom-" + i, "nom-" + i, "email@email-" + i + ".fr", "password" + i, true, false, null, new Address("street-" + i, "number-" + i, "complement-" + i), null))
