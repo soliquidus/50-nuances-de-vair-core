@@ -40,8 +40,6 @@ public class City extends BaseEntity {
     public City(String name, String zipCode, Department department) {
         this.name = name;
         this.zipCode = zipCode;
-        this.longitude = longitude;
-        this.latitude = latitude;
         this.department = department;
     }
 

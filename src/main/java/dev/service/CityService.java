@@ -1,10 +1,9 @@
 package dev.service;
 
-import dev.config.bach.task.CityLocalizedTask;
 import dev.dto.CityDto;
 import dev.dto.api.CityJson;
-import dev.dto.api.FeaturesJson;
-import dev.dto.api.GeometryJson;
+import dev.dto.api.CityJson.FeaturesJson;
+import dev.dto.api.CityJson.GeometryJson;
 import dev.entity.City;
 import dev.entity.Department;
 import dev.repository.CityRepository;
@@ -50,10 +49,10 @@ public class CityService {
 
             CityJson json = test.getForObject(url, CityJson.class);
             assert json != null;
-            FeaturesJson features = json.getFeatures()[0];
-            GeometryJson geometry = features.getGeometry();
-            Double longitude = geometry.getCoordinates()[0];
-            Double latitude = geometry.getCoordinates()[1];
+            FeaturesJson features = json.getFeaturesJsons()[0];
+            GeometryJson geometry = features.getGeometryJson();
+            Double longitude = geometry.getGeoLocalisation()[0];
+            Double latitude = geometry.getGeoLocalisation()[1];
 
             city.setLatitude(latitude);
             city.setLongitude(longitude);
