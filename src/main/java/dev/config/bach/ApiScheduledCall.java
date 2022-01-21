@@ -43,6 +43,7 @@ public class ApiScheduledCall {
 //            taskController.getAllCities().stream()
 //                    .map(taskController::cityLocalizeTaskController)
 //                    .forEach(taskController::citySaveByTaskController); // init DB cn_city field lat & lon
+            /*  TODO     add  taskController.getAllCities()   .map(CityDto::new) // without relation */
         } catch (HttpClientErrorException e) {
             LOGGER.info("ERROR HttpClientErrorException : {}", e.getMessage());
         }

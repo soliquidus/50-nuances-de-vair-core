@@ -1,5 +1,7 @@
 package dev.entity;
 
+import dev.dto.api.CityJson;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -54,6 +56,12 @@ public class City extends BaseEntity {
         this.users = users;
     }
 
+    public City addLocalisationAndCensus(CityJson cityJson){
+        setLongitude(cityJson.getLongitude());
+        setLatitude(cityJson.getLatitude());
+        setCensus(cityJson.getCensus());
+        return this;
+    }
     public String getName() {
         return name;
     }
