@@ -13,6 +13,8 @@ public class CityDto {
     @NotBlank
     private String[] codesPostaux;
 
+    Long census;
+
     public String getNom() {
         return nom;
     }
@@ -37,4 +39,12 @@ public class CityDto {
         this.codesPostaux = codesPostaux;
     }
 
+    public Long getCensus() {
+        return census;
+    }
+
+    public CityDto setCensus(Long census) {
+        this.census = census;
+        return this;
+    }
 }

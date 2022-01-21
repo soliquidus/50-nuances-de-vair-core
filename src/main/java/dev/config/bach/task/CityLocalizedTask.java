@@ -32,10 +32,15 @@ public class CityLocalizedTask {
     public static City assertNotNull(City city, CityJson cityJson) {
         FeaturesJson features = cityJson.getFeaturesJsons()[0];
         GeometryJson geometry = features.getGeometryJson();
+
+        Long census = features.getPropertiesJson().getCensus();
         Double longitude = geometry.getGeoLocalisation()[0];
         Double latitude = geometry.getGeoLocalisation()[1];
+
         city.setLatitude(latitude);
         city.setLongitude(longitude);
+        city.setCensus(census);
+
         return city;
     }
 }

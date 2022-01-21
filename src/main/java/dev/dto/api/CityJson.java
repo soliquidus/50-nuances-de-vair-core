@@ -9,9 +9,6 @@ public class CityJson {
     @JsonProperty("features")
     FeaturesJson[] featuresJsons;
 
-    @JsonProperty("properties")
-    PropertiesJson propertiesJson;
-
     public FeaturesJson[] getFeaturesJsons() {
         return featuresJsons;
     }
@@ -21,20 +18,14 @@ public class CityJson {
         return this;
     }
 
-    public PropertiesJson getPropertiesJson() {
-        return propertiesJson;
-    }
-
-    public CityJson setPropertiesJson(PropertiesJson propertiesJson) {
-        this.propertiesJson = propertiesJson;
-        return this;
-    }
-
     @JsonIgnoreProperties(ignoreUnknown = true)
     public static class FeaturesJson {
 
         @JsonProperty("geometry")
         GeometryJson geometryJson;
+
+        @JsonProperty("properties")
+        PropertiesJson propertiesJson;
 
         public GeometryJson getGeometryJson() {
             return geometryJson;
@@ -42,6 +33,15 @@ public class CityJson {
 
         public FeaturesJson setGeometryJson(GeometryJson geometryJson) {
             this.geometryJson = geometryJson;
+            return this;
+        }
+
+        public PropertiesJson getPropertiesJson() {
+            return propertiesJson;
+        }
+
+        public FeaturesJson setPropertiesJson(PropertiesJson propertiesJson) {
+            this.propertiesJson = propertiesJson;
             return this;
         }
     }

@@ -22,8 +22,7 @@ public class City extends BaseEntity {
     @JoinColumn(name = "id_department")
     private Department department;
 
-    @OneToOne
-    private Census census;
+    private Long census;
 
     @OneToOne
     private Pollution pollution;
@@ -43,7 +42,7 @@ public class City extends BaseEntity {
         this.department = department;
     }
 
-    public City(String name, String zipCode, Double longitude, Double latitude, Department department, Census census, Pollution pollution, Weather weather, List<User> users) {
+    public City(String name, String zipCode, Double longitude, Double latitude, Department department, Long census, Pollution pollution, Weather weather, List<User> users) {
         this.name = name;
         this.zipCode = zipCode;
         this.longitude = longitude;
@@ -95,11 +94,11 @@ public class City extends BaseEntity {
         this.department = department;
     }
 
-    public Census getCensus() {
+    public Long getCensus() {
         return census;
     }
 
-    public void setCensus(Census census) {
+    public void setCensus(Long census) {
         this.census = census;
     }
 

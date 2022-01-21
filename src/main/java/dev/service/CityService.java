@@ -51,11 +51,14 @@ public class CityService {
             assert json != null;
             FeaturesJson features = json.getFeaturesJsons()[0];
             GeometryJson geometry = features.getGeometryJson();
+
+            Long census = features.getPropertiesJson().getCensus();
             Double longitude = geometry.getGeoLocalisation()[0];
             Double latitude = geometry.getGeoLocalisation()[1];
 
             city.setLatitude(latitude);
             city.setLongitude(longitude);
+            city.setCensus(census);
 
             this.cityRepository.save(city);
         }
