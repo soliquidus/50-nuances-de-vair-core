@@ -30,4 +30,7 @@ public class DepartmentService {
         }
     }
 
+    public List<Department> list() {
+        return this.departmentRepository.findAll();
+    }
 }

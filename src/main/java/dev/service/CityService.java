@@ -2,8 +2,6 @@ package dev.service;
 
 import dev.dto.CityDto;
 import dev.dto.api.CityJson;
-import dev.dto.api.CityJson.FeaturesJson;
-import dev.dto.api.CityJson.GeometryJson;
 import dev.entity.City;
 import dev.entity.Department;
 import dev.repository.CityRepository;
@@ -56,5 +54,13 @@ public class CityService {
             city.addLocalisationAndCensus(cityJson);
             this.cityRepository.save(city);
         }
+    }
+
+    public City getCity(Long id) {
+        return this.cityRepository.getById(id);
+    }
+
+    public List<City> getCities(){
+        return this.cityRepository.findAll();
     }
 }

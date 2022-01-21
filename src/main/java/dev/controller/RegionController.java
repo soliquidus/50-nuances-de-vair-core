@@ -1,6 +1,7 @@
 package dev.controller;
 
 import dev.dto.RegionDto;
+import dev.entity.Region;
 import dev.service.RegionService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,15 +22,6 @@ public class RegionController {
         this.regionService = regionService;
     }
 
-    @GetMapping("api-test")
-    public List<Object> apiTest() {
-        String url = "https://geo.api.gouv.fr/regions";
-        RestTemplate restTemplate = new RestTemplate();
-        Object[] regions = restTemplate.getForObject(url, Object[].class);
-        assert regions != null;
-        return Arrays.asList(regions);
-    }
-
     @PostMapping("/save")
     public void addRegions() {
         String url = "https://geo.api.gouv.fr/regions";
@@ -38,5 +30,10 @@ public class RegionController {
         RegionDto[] regionsDto = restTemplate.getForObject(url, RegionDto[].class);
         assert regionsDto != null;
         this.regionService.createRegions(Arrays.asList(regionsDto));
+    }
+
+    @GetMapping
+    public List<Region> getRegions() {
+        return this.regionService.list();
     }
 }
