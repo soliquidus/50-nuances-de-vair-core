@@ -60,7 +60,7 @@ public class Startup {
 			for (int i=0; i<5;i++) {
 				Long id_user = this.getRandomNumber(1, 5);
 				Long id_topic = this.getRandomNumber(1, 5);
-				Message message = new Message("Message blabla -" + i, LocalDateTime.now(), false, userRepository.getById(id_user), topicRepository.getById(id_topic));
+				Message message = new Message("Message blabla -" + i, LocalDateTime.now(), userRepository.getById(id_user), topicRepository.getById(id_topic));
 				messageRepository.save(message);
 			}
 		}
