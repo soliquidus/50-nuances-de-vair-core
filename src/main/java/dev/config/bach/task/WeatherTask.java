@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 
 @Service
 @PropertySource("classpath:application-api.properties")
-public class WeatherTask {
+public class WeatherTask implements ItaskCity<Weather> {
     @Value("${key.api-open-weather}")
     private String keyApiWeather;
     @Value("${request.weather-open-weather}")
@@ -28,8 +28,9 @@ public class WeatherTask {
         this.weatherRepository = weatherRepository;
     }
 
+    @Override
     @Transactional
-    public Weather run(RestTemplate restTemplate, City city)throws HttpClientErrorException {
+    public Weather run(RestTemplate restTemplate, City city) throws HttpClientErrorException {
         /* request api open-weather */
         String url = String.format(urlWeather, city.getName(), state, city.getZipCode(), keyApiWeather);
         WeatherDto weatherDto = restTemplate.getForObject(url, WeatherDto.class);

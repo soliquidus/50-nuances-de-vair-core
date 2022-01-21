@@ -14,7 +14,7 @@ import java.util.List;
 
 @Service
 @PropertySource("classpath:application-api.properties")
-public class RegionTask {
+public class RegionTask implements Itask{
     @Value("${request.region-geo-gouv}")
     private String urlRegion;
 
@@ -26,6 +26,7 @@ public class RegionTask {
     }
 
     /* /!\ fisrt request before DepartmentTask and CityTask*/
+    @Override
     @Transactional
     public void run(RestTemplate restTemplate )throws HttpClientErrorException {
         RegionDto[] regionsDto = restTemplate.getForObject(urlRegion, RegionDto[].class);

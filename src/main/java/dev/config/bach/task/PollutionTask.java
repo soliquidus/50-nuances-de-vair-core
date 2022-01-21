@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 @Service
 @PropertySource("classpath:application-api.properties")
-public class PollutionTask {
+public class PollutionTask implements ItaskCity<Pollution>{
 
     @Value("${key.api-open-weather}")
     private String keyApiWeather;
@@ -26,6 +26,7 @@ public class PollutionTask {
         this.pollutionRepository = pollutionRepository;
     }
 
+    @Override
     @Transactional
     public Pollution run(RestTemplate buildTemplate, City city) throws HttpClientErrorException {
         /* request api open-weather */

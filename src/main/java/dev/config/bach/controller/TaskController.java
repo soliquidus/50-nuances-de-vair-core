@@ -16,13 +16,14 @@ import java.util.List;
 @Controller
 public class TaskController {
 
-    private PollutionTask pollutionTask;
-    private WeatherTask weatherTask;
+    private ItaskCity<Pollution> pollutionTask;
+    private ItaskCity<Weather> weatherTask;
+    private ItaskCity<City> cityLocalizedTask;
+    private Itask regionTask;
+    private Itask departmentTask;
+    private Itask cityTask;
+
     private RestTemplate restTemplate;
-    private RegionTask regionTask;
-    private DepartmentTask departmentTask;
-    private CityTask cityTask;
-    private CityLocalizedTask cityLocalizedTask;
     private CityRepository cityRepository;
 
     public Pollution pollutionTaskController(City city) throws HttpClientErrorException {
