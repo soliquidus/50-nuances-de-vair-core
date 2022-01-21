@@ -24,10 +24,11 @@ public class Rubric extends BaseEntity {
     public Rubric() {
     }
 
-    public Rubric(String name, Admin admin, List<Topic> topics) {
+    public Rubric(String name, Admin admin, List<Topic> topics, Category category) {
         this.name = name;
         this.admin = admin;
         this.topics = topics;
+        this.category = category;
     }
 
     public String getName() {

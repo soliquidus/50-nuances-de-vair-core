@@ -47,7 +47,7 @@ public class Startup {
 			IntStream.of(1, 2, 3, 4, 5).mapToObj(i -> new User("username" + i, "prenom-" + i, "nom-" + i, "email@email-" + i + ".fr", "password" + i, true, false, null, new Address("street-" + i, "number-" + i, "complement-" + i), null))
 					.forEach(userRepository::save);
 
-			IntStream.of(1, 2, 3).mapToObj(i -> new Rubric("Rubric-" + i, admin, null))
+			IntStream.of(1, 2, 3).mapToObj(i -> new Rubric("Rubric-" + i, admin, null, null))
 					.forEach(rubricRepository::save);
 			
 			for (int i=0; i<5;i++) {
