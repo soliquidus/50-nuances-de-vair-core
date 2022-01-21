@@ -12,6 +12,8 @@ public class Message extends BaseEntity {
 
     @Column(nullable = false)
     private LocalDateTime postTime;
+    
+    private boolean isReported;
 
     @ManyToOne
     @JoinColumn(name = "id_user")
@@ -27,14 +29,19 @@ public class Message extends BaseEntity {
     public Message() {
     }
 
-    public Message(String content, LocalDateTime postTime, User user, Topic topic) {
-        this.content = content;
-        this.postTime = postTime;
-        this.user = user;
-        this.topic = topic;
-    }
+    
 
-    public String getContent() {
+    public Message(String content, LocalDateTime postTime, boolean isReported, User user, Topic topic) {
+		this.content = content;
+		this.postTime = postTime;
+		this.isReported = isReported;
+		this.user = user;
+		this.topic = topic;
+	}
+
+
+
+	public String getContent() {
         return content;
     }
 
