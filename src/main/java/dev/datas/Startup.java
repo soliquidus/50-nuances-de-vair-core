@@ -41,10 +41,10 @@ public class Startup {
 		
 		if ((this.adminRepository.count() == 0) && (this.userRepository.count() == 0) && (this.rubricRepository.count() == 0) && (this.topicRepository.count() == 0)) {
 			
-			Admin admin = new Admin("admin", "prenom", "nom", "email@email.fr", "password-admin", true, true, null, new Address("street", "number", "complement"), null, null);
+			Admin admin = new Admin("admin", "prenom", "nom", "email@email.fr", "password-admin", true, true, false, false, null, new Address("street", "number", "complement"), null, null);
 			adminRepository.save(admin);
 
-			IntStream.of(1, 2, 3, 4, 5).mapToObj(i -> new User("username" + i, "prenom-" + i, "nom-" + i, "email@email-" + i + ".fr", "password" + i, true, false, null, new Address("street-" + i, "number-" + i, "complement-" + i), null))
+			IntStream.of(1, 2, 3, 4, 5).mapToObj(i -> new User("username" + i, "prenom-" + i, "nom-" + i, "email@email-" + i + ".fr", "password" + i, true, false, true, false, null, new Address("street-" + i, "number-" + i, "complement-" + i), null))
 					.forEach(userRepository::save);
 
 			IntStream.of(1, 2, 3).mapToObj(i -> new Rubric("Rubric-" + i, admin, null))
@@ -60,7 +60,7 @@ public class Startup {
 			for (int i=0; i<5;i++) {
 				Long id_user = this.getRandomNumber(1, 5);
 				Long id_topic = this.getRandomNumber(1, 5);
-				Message message = new Message("Message blabla -" + i, LocalDateTime.now(), userRepository.getById(id_user), topicRepository.getById(id_topic));
+				Message message = new Message("Message blabla -" + i, LocalDateTime.now(), false, userRepository.getById(id_user), topicRepository.getById(id_topic));
 				messageRepository.save(message);
 			}
 		}
