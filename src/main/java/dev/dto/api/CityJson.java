@@ -9,13 +9,19 @@ public class CityJson {
     @JsonProperty("features")
     FeaturesJson[] featuresJsons;
 
-    public FeaturesJson[] getFeaturesJsons() {
-        return featuresJsons;
+
+
+
+    public Double getLongitude() {
+        return featuresJsons[0].getGeometryJson().geoLocalisation[0];
     }
 
-    public CityJson setFeaturesJsons(FeaturesJson[] featuresJsons) {
-        this.featuresJsons = featuresJsons;
-        return this;
+    public Double getLatitude() {
+        return featuresJsons[0].getGeometryJson().geoLocalisation[1];
+    }
+
+    public Long getCensus() {
+        return featuresJsons[0].getPropertiesJson().getCensus();
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -31,19 +37,11 @@ public class CityJson {
             return geometryJson;
         }
 
-        public FeaturesJson setGeometryJson(GeometryJson geometryJson) {
-            this.geometryJson = geometryJson;
-            return this;
-        }
 
         public PropertiesJson getPropertiesJson() {
             return propertiesJson;
         }
 
-        public FeaturesJson setPropertiesJson(PropertiesJson propertiesJson) {
-            this.propertiesJson = propertiesJson;
-            return this;
-        }
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -56,10 +54,6 @@ public class CityJson {
             return geoLocalisation;
         }
 
-        public GeometryJson setGeoLocalisation(Double[] geoLocalisation) {
-            this.geoLocalisation = geoLocalisation;
-            return this;
-        }
     }
 
     @JsonIgnoreProperties(ignoreUnknown = true)
@@ -72,10 +66,6 @@ public class CityJson {
             return census;
         }
 
-        public PropertiesJson setCensus(Long census) {
-            this.census = census;
-            return this;
-        }
     }
 
 }

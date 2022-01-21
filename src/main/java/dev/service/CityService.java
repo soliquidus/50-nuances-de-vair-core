@@ -8,6 +8,8 @@ import dev.entity.City;
 import dev.entity.Department;
 import dev.repository.CityRepository;
 import dev.repository.DepartmentRepository;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -15,8 +17,10 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
+@PropertySource("classpath:application-api.properties")
 public class CityService {
-
+    @Value("${request.localized.city-geo-gouv}")
+    private String urlCity;
     private final CityRepository cityRepository;
     private final DepartmentRepository departmentRepository;
 
@@ -43,23 +47,13 @@ public class CityService {
         List<City> cities = this.cityRepository.findAll();
         for (City city : cities) {
 
-            String url = "https://api-adresse.data.gouv.fr/search/?q=" + city.getName() + "&postcode=" + city.getZipCode() + "&limit=1";
+            String url = String.format(urlCity,city.getName(),city.getZipCode());
 
             RestTemplate test = new RestTemplate();
 
-            CityJson json = test.getForObject(url, CityJson.class);
-            assert json != null;
-            FeaturesJson features = json.getFeaturesJsons()[0];
-            GeometryJson geometry = features.getGeometryJson();
-
-            Long census = features.getPropertiesJson().getCensus();
-            Double longitude = geometry.getGeoLocalisation()[0];
-            Double latitude = geometry.getGeoLocalisation()[1];
-
-            city.setLatitude(latitude);
-            city.setLongitude(longitude);
-            city.setCensus(census);
-
+            CityJson cityJson = test.getForObject(url, CityJson.class);
+            assert cityJson != null;
+            city.addLocalisationAndCensus(cityJson);
             this.cityRepository.save(city);
         }
     }
