@@ -25,4 +25,8 @@ public class RegionService {
             this.regionRepository.save(region);
         }
     }
+
+    public List<Region> list() {
+        return this.regionRepository.findAll();
+    }
 }

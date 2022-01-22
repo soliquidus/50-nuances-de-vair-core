@@ -1,6 +1,7 @@
 package dev.controller;
 
 import dev.dto.DepartmentDto;
+import dev.entity.Department;
 import dev.service.DepartmentService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,5 +29,10 @@ public class DepartmentController {
         DepartmentDto[] departmentsDto = restTemplate.getForObject(url, DepartmentDto[].class);
         assert departmentsDto != null;
         this.departmentService.createDepartments(Arrays.asList(departmentsDto));
+    }
+
+    @GetMapping
+    public List<Department> getDepartments() {
+        return this.departmentService.list();
     }
 }
