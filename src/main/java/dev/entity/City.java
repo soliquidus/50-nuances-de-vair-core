@@ -26,10 +26,10 @@ public class City extends BaseEntity {
 
     private Long census;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Pollution pollution;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private Weather weather;
 
     @ManyToMany(mappedBy = "cities")
