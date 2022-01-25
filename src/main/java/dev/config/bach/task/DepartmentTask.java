@@ -12,7 +12,7 @@ import javax.transaction.Transactional;
 import java.util.Arrays;
 @Service
 @PropertySource("classpath:application-api.properties")
-public class DepartmentTask {
+public class DepartmentTask implements Itask{
 
     @Value("${request.department-geo-gouv}")
     private String urlDepartment;
@@ -23,6 +23,7 @@ public class DepartmentTask {
         this.departmentService = departmentService;
     }
     /* /!\ Task programming after RegionTask*/
+    @Override
     @Transactional
     public void run(RestTemplate restTemplate)throws HttpClientErrorException {
         DepartmentDto[] departmentsDto = restTemplate.getForObject(urlDepartment, DepartmentDto[].class);

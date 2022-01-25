@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 
 @Service
 @PropertySource("classpath:application-api.properties")
-public class CityTask {
+public class CityTask implements Itask{
     private Logger LOGGER = LoggerFactory.getLogger(CityTask.class);
     @Value("${request.cities-geo-gouv}")
     private String urlCities;
@@ -32,6 +32,7 @@ public class CityTask {
     }
 
     /* /!\ Task programming after DepartmentTask */
+    @Override
     @Transactional
     public void run(RestTemplate restTemplate) throws HttpClientErrorException {
         List<String> codeDept = createListDepartment();

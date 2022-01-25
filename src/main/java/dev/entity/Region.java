@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "cn_region")
@@ -22,7 +22,7 @@ public class Region extends BaseEntity {
     private String regionCode;
 
     @OneToMany(mappedBy = "cities")
-    private List<Department> department;// the set is preferred
+    private Set<Department> department;// the set is preferred
 
     public Region() {
     }
@@ -51,11 +51,11 @@ public class Region extends BaseEntity {
         this.regionCode = regionCode;
     }
 
-    public List<Department> getDepartment() {
+    public Set<Department> getDepartment() {
         return department;
     }
 
-    public void setDepartment(List<Department> department) {
+    public void setDepartment(Set<Department> department) {
         this.department = department;
     }
 }

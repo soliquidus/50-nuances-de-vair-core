@@ -14,11 +14,12 @@ import javax.transaction.Transactional;
 
 @Service
 @PropertySource("classpath:application-api.properties")
-public class CityLocalizedTask {
+public class CityLocalizedTask implements ItaskCity<City>{
 
     @Value("${request.localized.city-geo-gouv}")
     private String urlLocalizedCity;
 
+    @Override
     @Transactional
     public City run(RestTemplate buildTemplate, City city)throws HttpClientErrorException {
         /* request api open-weather */
