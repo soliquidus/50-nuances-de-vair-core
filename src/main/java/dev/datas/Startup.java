@@ -61,18 +61,7 @@ public class Startup {
 							"number",
 							"complement"
 					),
-					(List<City>) new City(
-							"Nantes",
-							"44000",
-							new Department(
-									"Nantes",
-									"44",
-									new Region(
-											"Pays-de-la-Loire",
-											"PL?"
-									)
-							)
-					),
+					null,
 					null,
 					null);
 			adminRepository.save(admin);
