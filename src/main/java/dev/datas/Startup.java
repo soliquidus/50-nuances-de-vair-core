@@ -1,6 +1,10 @@
 package dev.datas;
 
+import dev.entity.City;
+import dev.entity.Department;
+import dev.entity.Region;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -41,13 +45,42 @@ public class Startup {
 		
 		if ((this.adminRepository.count() == 0) && (this.userRepository.count() == 0) && (this.rubricRepository.count() == 0) && (this.topicRepository.count() == 0)) {
 			
-			Admin admin = new Admin("admin", "prenom", "nom", "email@email.fr", "password-admin", true, true, false, false, null, new Address("street", "number", "complement"), null, null);
+			Admin admin = new Admin(
+					"admin",
+					"prenom",
+					"nom",
+					"email@email.fr",
+					"password-admin",
+					true,
+					true,
+					false,
+					false, //isPubCookiesDeclined
+					null,
+					new Address(
+							"street",
+							"number",
+							"complement"
+					),
+					(List<City>) new City(
+							"Nantes",
+							"44000",
+							new Department(
+									"Nantes",
+									"44",
+									new Region(
+											"Pays-de-la-Loire",
+											"PL?"
+									)
+							)
+					),
+					null,
+					null);
 			adminRepository.save(admin);
 
 			IntStream.of(1, 2, 3, 4, 5).mapToObj(i -> new User("username" + i, "prenom-" + i, "nom-" + i, "email@email-" + i + ".fr", "password" + i, true, false, true, false, null, new Address("street-" + i, "number-" + i, "complement-" + i), null))
 					.forEach(userRepository::save);
 
-			IntStream.of(1, 2, 3).mapToObj(i -> new Rubric("Rubric-" + i, admin, null))
+			IntStream.of(1, 2, 3).mapToObj(i -> new Rubric("Rubric-" + i, admin, null, null))
 					.forEach(rubricRepository::save);
 			
 			for (int i=0; i<5;i++) {

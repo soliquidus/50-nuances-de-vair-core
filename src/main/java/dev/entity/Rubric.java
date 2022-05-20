@@ -14,16 +14,21 @@ public class Rubric extends BaseEntity {
     @JoinColumn(name = "id_admin")
     private Admin admin;
 
+    @ManyToOne
+    @JoinColumn(name = "id_category")
+    private Category category;
+
     @OneToMany(mappedBy = "rubric", cascade = CascadeType.REMOVE)
     private List<Topic> topics;
 
     public Rubric() {
     }
 
-    public Rubric(String name, Admin admin, List<Topic> topics) {
+    public Rubric(String name, Admin admin, List<Topic> topics, Category category) {
         this.name = name;
         this.admin = admin;
         this.topics = topics;
+        this.category = category;
     }
 
     public String getName() {
