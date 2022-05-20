@@ -26,10 +26,35 @@ public class Admin extends User {
 		this.categories = categories;
 	}
 
-	public Admin(String userName, String firstName, String lastName, String email, String password, Boolean isAccountActive,
+	public Admin(
+			String userName,
+			String firstName,
+			String lastName,
+			String email,
+			String password,
+			Boolean isAccountActive,
 			boolean isAdmin,
-			List<Message> messages, Address address, List<City> cities, List<Rubric> rubrics, List<Category> categories) {
-		super(userName, firstName, lastName, email, password, isAccountActive, isAdmin, messages, address, cities);
+			boolean isAlertAccepted,
+			boolean isPubCookiesDeclined,
+			List<Message> messages,
+			Address address,
+			List<City> cities,
+			List<Rubric> rubrics,
+			List<Category> categories) {
+		super(
+				userName,
+				firstName,
+				lastName,
+				email,
+				password,
+				isAccountActive,
+				isAdmin,
+				isAlertAccepted,
+				isPubCookiesDeclined,
+				messages,
+				address,
+				cities
+		);
 		this.rubrics = rubrics;
 		this.categories = categories;
 	}
