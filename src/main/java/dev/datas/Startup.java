@@ -13,11 +13,13 @@ import org.springframework.stereotype.Component;
 
 import dev.entity.Address;
 import dev.entity.Admin;
+import dev.entity.Category;
 import dev.entity.Message;
 import dev.entity.User;
 import dev.entity.Rubric;
 import dev.entity.Topic;
 import dev.repository.AdminRepository;
+import dev.repository.CategoryRepository;
 import dev.repository.MessageRepository;
 import dev.repository.RubricRepository;
 import dev.repository.TopicRepository;
@@ -30,14 +32,16 @@ public class Startup {
 	private UserRepository userRepository;
 	private RubricRepository rubricRepository;
 	private TopicRepository topicRepository;
-	private MessageRepository messageRepository;	 
+	private MessageRepository messageRepository;
+	private CategoryRepository categoryRepository;
 	
-	public Startup(AdminRepository adminRepository, UserRepository userRepository, RubricRepository rubricRepository, TopicRepository topicRepository, MessageRepository messageRepository) {
+	public Startup(AdminRepository adminRepository, UserRepository userRepository, RubricRepository rubricRepository, TopicRepository topicRepository, MessageRepository messageRepository, CategoryRepository categoryRepository) {
 		this.adminRepository = adminRepository;
 		this.userRepository = userRepository;
 		this.rubricRepository = rubricRepository;
 		this.topicRepository = topicRepository;
 		this.messageRepository = messageRepository;
+		this.categoryRepository = categoryRepository;
 	}
 	
 	@EventListener(ApplicationReadyEvent.class)
@@ -65,12 +69,17 @@ public class Startup {
 					null,
 					null);
 			adminRepository.save(admin);
+			
+			Category category = new Category("Écologie, je t'aime",null, null);
+			categoryRepository.save(category);
 
 			IntStream.of(1, 2, 3, 4, 5).mapToObj(i -> new User("username" + i, "prenom-" + i, "nom-" + i, "email@email-" + i + ".fr", "password" + i, true, false, true, false, null, new Address("street-" + i, "number-" + i, "complement-" + i), null))
 					.forEach(userRepository::save);
 
 			IntStream.of(1, 2, 3).mapToObj(i -> new Rubric("Rubric-" + i, admin, null, null))
 					.forEach(rubricRepository::save);
+			
+			
 			
 			for (int i=0; i<5;i++) {
 				Long id_user = this.getRandomNumber(1, 5);
