@@ -21,11 +21,6 @@ public class Admin extends User {
 		super();
 	}
 
-	public Admin(List<Rubric> rubrics, List<Category> categories) {
-		this.rubrics = rubrics;
-		this.categories = categories;
-	}
-
 	public Admin(
 			String userName,
 			String firstName,
